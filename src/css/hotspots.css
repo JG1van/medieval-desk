@@ -1,0 +1,157 @@
+/* Hotspot hit areas - transparent overlays */
+.hotspot-area {
+  position: absolute;
+  border: 2px solid transparent;
+  border-radius: 4px;
+  pointer-events: auto;
+  z-index: 100;
+  transition: box-shadow 0.15s ease, transform 0.15s ease;
+  cursor: pointer;
+}
+
+.hotspot-area:hover {
+  box-shadow: 0 0 0 1px var(--color-green-mid), 0 0 12px var(--color-green-light);
+  transform: scale(1.02);
+}
+
+/* Edit mode: always visible outlines */
+body.edit-mode .hotspot-area {
+  border-color: var(--color-green-mid);
+  box-shadow: 0 0 0 1px var(--color-green-mid), 0 0 8px var(--color-green-light);
+}
+
+body.edit-mode .hotspot-area:hover {
+  box-shadow: 0 0 0 2px var(--color-green-dark), 0 0 12px var(--color-green-light);
+  transform: scale(1.02);
+}
+
+.hotspot-area:focus-visible {
+  box-shadow: 0 0 0 1px var(--color-green-light), 0 0 12px var(--color-green-light);
+  outline: none;
+}
+
+.hotspot-area.edit-mode-active {
+  box-shadow: 0 0 0 2px var(--color-green-dark), 0 0 16px var(--color-green-light);
+}
+
+.hotspot-area.edit-mode-active:hover {
+  box-shadow: 0 0 0 2px var(--color-green-dark), 0 0 16px var(--color-green-light), 0 0 12px var(--color-green-mid);
+}
+
+/* Tooltip pada hover */
+.hotspot-area .tooltip {
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%) translateY(4px);
+  background: var(--color-green-dark);
+  color: var(--color-green-light);
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-family: var(--font-body);
+  font-size: 11px;
+  letter-spacing: 0.05em;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.15s ease, transform 0.15s ease;
+  z-index: 200;
+  white-space: nowrap;
+}
+
+.hotspot-area:hover .tooltip {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hotspot-area .tooltip {
+    display: none !important;
+  }
+  .hotspot-area:hover {
+    transform: none;
+  }
+}
+
+/* Outline & label edit mode */
+.hotspot-outline {
+  position: absolute;
+  border: 2px dashed var(--color-green-mid);
+  border-radius: 4px;
+  pointer-events: none;
+  z-index: 110;
+  transition: border-color 0.15s ease;
+}
+
+.hotspot-outline.edit-active {
+  border-color: var(--color-green-dark);
+}
+
+.hotspot-label {
+  position: absolute;
+  top: -22px;
+  left: 0;
+  background: var(--color-green-dark);
+  color: var(--color-green-light);
+  padding: 2px 6px;
+  border-radius: 3px;
+  font-family: var(--font-body);
+  font-size: 10px;
+  letter-spacing: 0.05em;
+  white-space: nowrap;
+  z-index: 60;
+  opacity: 0;
+  transition: opacity 0.15s ease;
+  pointer-events: none;
+}
+
+/* Edit mode: label always visible */
+body.edit-mode .hotspot-label {
+  opacity: 1;
+}
+
+.hotspot-area.edit-mode-active .hotspot-label {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hotspot-label {
+    display: none !important;
+  }
+}
+
+.assign-btn {
+  pointer-events: auto;
+  position: absolute;
+  top: -28px;
+  right: -28px;
+  width: 28px;
+  height: 28px;
+  background: var(--color-green-dark);
+  color: var(--color-green-light);
+  border: 1px solid var(--color-green-mid);
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s ease, transform 0.15s ease;
+  z-index: 70;
+}
+
+.assign-btn:hover {
+  background: var(--color-green-mid);
+  transform: scale(1.15);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .assign-btn {
+    transition: none;
+    transform: none;
+  }
+  .assign-btn:hover {
+    transform: none;
+  }
+}
+
