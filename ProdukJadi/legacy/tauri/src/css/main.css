@@ -1,0 +1,128 @@
+:root {
+  --color-dark: #091413;
+  --color-green-dark: #285A48;
+  --color-green-mid: #408A71;
+  --color-green-light: #B0E4CC;
+  --paper-bg: #e3d0b0;
+  --paper-bg-light: #fdf5e6;
+  --paper-bg-lighter: #fffaf0;
+  --paper-border: #c9b28a;
+  --paper-text: #3a2f1f;
+  --wood: #7a5c3a;
+  --font-title: "Grenze Gotisch", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-body: "Cardo", Georgia, "Times New Roman", Times, serif;
+  --glow: rgba(176, 228, 204, 0.9);
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0; padding: 0; width: 100%; height: 100%; overflow: hidden;
+  background: var(--color-dark);
+  font-family: var(--font-body);
+  color: var(--paper-text);
+  user-select: none; -webkit-user-select: none;
+}
+
+#app {
+  position: fixed; inset: 0; width: 100vw; height: 100vh;
+}
+
+#wallpaper-container {
+  position: absolute; inset: 0; width: 100%; height: 100%; overflow: hidden;
+}
+
+#wallpaper {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: fill; object-position: center center;
+  pointer-events: none; user-select: none;
+}
+
+#hotspots-layer {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+}
+
+/* Drag region - tipis di tepi atas, tidak menutupi hotspot */
+.drag-region {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 28px;
+  z-index: 50;
+}
+
+/* Saat edit mode, drag region nonaktif agar hotspot bisa diklik */
+body.edit-mode .drag-region { pointer-events: none; }
+
+/* Window controls - tombol ala Windows, di sebelah kiri tombol pensil edit */
+.window-controls {
+  position: fixed;
+  top: 12px; right: 64px;
+  display: flex; gap: 4px;
+  z-index: 600;
+}
+
+.win-btn {
+  position: relative;
+  width: 28px; height: 28px;
+  display: flex; align-items: center; justify-content: center;
+  padding: 0; border: 1px solid rgba(64, 138, 113, 0.55);
+  border-radius: 4px;
+  background: rgba(40, 90, 72, 0.55);
+  color: var(--color-green-light);
+  font-family: var(--font-body);
+  font-size: 14px; line-height: 1;
+  cursor: pointer;
+  opacity: 0.35;
+  transition: opacity 0.18s ease, background 0.18s ease, transform 0.18s ease;
+  backdrop-filter: blur(3px);
+}
+
+.win-btn:hover { opacity: 1; background: var(--color-green-mid); transform: scale(1.08); }
+.win-btn:focus-visible { opacity: 1; outline: 2px solid var(--color-green-light); outline-offset: 2px; }
+
+/* Close: warna terang agar terlihat, hover merah gelap */
+.win-btn.win-close {
+  background: rgba(40, 90, 72, 0.55);
+  color: #e8b4b4;
+}
+.win-btn.win-close:hover { background: #8a2b2b; color: #ffecec; }
+
+@media (prefers-reduced-motion: reduce) {
+  .win-btn { transition: none; }
+  .win-btn:hover { transform: none; }
+}
+
+.control-btn {
+  position: fixed;
+  display: flex; align-items: center; justify-content: center;
+  background: rgba(40, 90, 72, 0.75);
+  color: var(--color-green-light);
+  border: 1px solid var(--color-green-mid);
+  border-radius: 8px;
+  cursor: pointer; z-index: 500;
+  transition: background 0.18s ease, transform 0.18s ease, opacity 0.3s ease;
+  backdrop-filter: blur(3px);
+}
+
+.control-btn:hover { background: var(--color-green-mid); transform: scale(1.06); }
+
+#edit-toggle { top: 12px; right: 12px; width: 40px; height: 40px; padding: 0; opacity: 0.35; }
+#edit-toggle:hover, #edit-toggle.active { opacity: 1; }
+#edit-toggle.active {
+  background: var(--color-green-light);
+  color: var(--color-green-dark);
+  border-color: var(--color-green-light);
+}
+
+#hotkey-hint {
+  bottom: 12px; right: 12px; padding: 6px 12px;
+  font-family: var(--font-body); font-size: 12px; letter-spacing: 0.04em;
+  opacity: 0.25; pointer-events: none;
+}
+
+body.tray-hidden #app { opacity: 0; pointer-events: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; animation: none !important; }
+}

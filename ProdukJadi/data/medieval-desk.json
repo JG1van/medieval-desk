@@ -1,0 +1,22 @@
+{
+  "version": 1,
+  "reference": { "width": 1376, "height": 768 },
+  "settings": {
+    "minimizeAfterLaunch": true,
+    "hotkey": "Ctrl+Alt+D",
+    "location": { "name": "", "lat": null, "lon": null }
+  },
+  "hotspots": [
+    { "id": "rak_buku", "label": "Rak Buku", "kind": "configurable", "fixedType": null, "box": { "x": 2.9, "y": 19.5, "w": 21.0, "h": 67.5 }, "groups": [{ "id": "g1", "name": "Rak 1", "items": [] }, { "id": "g2", "name": "Rak 2", "items": [] }, { "id": "g3", "name": "Rak 3", "items": [] }, { "id": "g4", "name": "Rak 4", "items": [] }] },
+    { "id": "kalender", "label": "Kalender", "kind": "fixed", "fixedType": "calendar", "box": { "x": 26.9, "y": 36.1, "w": 5.3, "h": 11.9 }, "groups": null },
+    { "id": "gulungan", "label": "Gulungan", "kind": "configurable", "fixedType": null, "box": { "x": 26.4, "y": 52.0, "w": 6.6, "h": 7.4 }, "groups": [{ "id": "g_gulungan", "name": "Umum", "items": [] }] },
+    { "id": "bingkai", "label": "Bingkai", "kind": "fixed", "fixedType": "photo", "box": { "x": 40.5, "y": 23.9, "w": 19.2, "h": 44.0 }, "groups": null },
+    { "id": "note", "label": "Note", "kind": "fixed", "fixedType": "note", "box": { "x": 67.4, "y": 36.9, "w": 6.0, "h": 10.6 }, "groups": null },
+    { "id": "bola_kristal", "label": "Bola Kristal", "kind": "configurable", "fixedType": null, "box": { "x": 68.8, "y": 47.9, "w": 4.4, "h": 9.5 }, "groups": [{ "id": "g_kristal", "name": "Umum", "items": [] }] },
+    { "id": "loker", "label": "Loker", "kind": "configurable", "fixedType": null, "box": { "x": 78.0, "y": 29.3, "w": 19.8, "h": 56.0 }, "groups": [{ "id": "g_loker_kiri", "name": "Pintu Kiri", "items": [] }, { "id": "g_loker_kanan", "name": "Pintu Kanan", "items": [] }] },
+    { "id": "perisai", "label": "Perisai", "kind": "configurable", "fixedType": null, "box": { "x": 45.2, "y": 4.4, "w": 9.9, "h": 16.1 }, "groups": [{ "id": "g_perisai", "name": "Umum", "items": [] }] },
+    { "id": "burung_gagak", "label": "Burung Gagak", "kind": "configurable", "fixedType": null, "box": { "x": 32.1, "y": 52.4, "w": 7.4, "h": 32.4 }, "groups": [{ "id": "g_gagak", "name": "Umum", "items": [] }] },
+    { "id": "peti", "label": "Peti", "kind": "configurable", "fixedType": null, "box": { "x": 65.4, "y": 66.9, "w": 10.1, "h": 16.7 }, "groups": [{ "id": "g_peti", "name": "Downloads", "items": [] }] }
+  ],
+  "widgets": []
+}

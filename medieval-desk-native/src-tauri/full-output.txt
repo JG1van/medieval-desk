@@ -1,0 +1,73 @@
+    Checking medieval-desk-native v0.1.0 (C:\LARAGON-2025-1\www\@GITHUB\medieval-desk\medieval-desk-native\src-tauri)
+error[E0433]: cannot find `api` in `tauri`
+  --> src\commands\hotspot.rs:25:20
+   |
+25 |     let _ = tauri::api::clipboard::write_text(&target);
+   |                    ^^^ could not find `api` in `tauri`
+
+error[E0425]: cannot find function `init` in crate `tauri_plugin_global_shortcut`
+  --> src\lib.rs:13:47
+   |
+13 |         .plugin(tauri_plugin_global_shortcut::init())
+   |                                               ^^^^ not found in `tauri_plugin_global_shortcut`
+
+error[E0603]: static `LAST_TARGET` is private
+  --> src\commands\hotspot.rs:1:57
+   |
+ 1 | use crate::models::hotspot::{Hotspot, default_hotspots, LAST_TARGET};
+   |                                                         ^^^^^^^^^^^ private static
+   |
+note: the static `LAST_TARGET` is defined here
+  --> src\models\hotspot.rs:67:1
+   |
+67 | static LAST_TARGET: std::sync::Mutex<Option<String>> = std::sync::Mutex::new(None);
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `tauri::Manager`
+ --> src\commands\hotspot.rs:2:5
+  |
+2 | use tauri::Manager;
+  |     ^^^^^^^^^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` (part of `#[warn(unused)]`) on by default
+
+error[E0277]: the trait bound `FilePath: AsRef<std::path::Path>` is not satisfied
+   --> src\commands\data.rs:113:37
+    |
+113 |         Some(p) => { std::fs::write(p, json).map_err(|e| e.to_string())?; Ok(Some("Data diekspor".into())) }
+    |                      -------------- ^ the trait `AsRef<std::path::Path>` is not implemented for `FilePath`
+    |                      |
+    |                      required by a bound introduced by this call
+    |
+note: required by a bound in `std::fs::write`
+   --> /rustc/b940084d7eb6a299eb4bfeb8e34901bc051e7ac4/library\std\src\fs.rs:420:0
+
+error[E0277]: the trait bound `FilePath: AsRef<std::path::Path>` is not satisfied
+   --> src\commands\data.rs:127:40
+    |
+127 |     let raw = std::fs::read_to_string(&path).map_err(|e| e.to_string())?;
+    |               -----------------------  ^^^^ the trait `AsRef<std::path::Path>` is not implemented for `FilePath`
+    |               |
+    |               required by a bound introduced by this call
+    |
+    = note: required for `&FilePath` to implement `AsRef<std::path::Path>`
+note: required by a bound in `std::fs::read_to_string`
+   --> /rustc/b940084d7eb6a299eb4bfeb8e34901bc051e7ac4/library\std\src\fs.rs:383:0
+
+error[E0507]: cannot move out of dereference of `std::sync::MutexGuard<'_, std::option::Option<(std::time::Instant, WeatherData)>>`
+  --> src\commands\weather.rs:11:31
+   |
+11 |         if let Some((t, w)) = *g {
+   |                         -     ^^
+   |                         |
+   |                         data moved here because `w` has type `WeatherData`, which does not implement the `Copy` trait
+   |
+help: consider borrowing here
+   |
+11 |         if let Some((t, w)) = &*g {
+   |                               +
+
+Some errors have detailed explanations: E0277, E0425, E0433, E0507, E0603.
+For more information about an error, try `rustc --explain E0277`.
+warning: `medieval-desk-native` (lib) generated 1 warning
+error: could not compile `medieval-desk-native` (lib) due to 6 previous errors; 1 warning emitted

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Medieval Desk</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div id="app">
+    <div id="wallpaper-container">
+      <img id="wallpaper" src="assets/wallpaper.png" alt="Medieval Desk Wallpaper">
+    </div>
+    <div id="hotspots-layer"></div>
+    <div class="drag-region"></div>
+    <div class="window-controls">
+      <button class="win-btn win-minimize" title="Minimalkan">_</button>
+      <button class="win-btn win-maximize" title="Maksimalkan">□</button>
+      <button class="win-btn win-close" title="Tutup">×</button>
+    </div>
+    <button class="control-btn" id="edit-toggle" title="Mode edit (E)" aria-label="Mode edit">✏️</button>
+    <div id="hotkey-hint">Ctrl+Alt+D: Tampilkan/Sembunyikan</div>
+  </div>
+
+  <div class="popup-overlay" id="group-popup" hidden>
+    <div class="popup popup-wide" role="dialog" aria-modal="true" aria-labelledby="group-popup-title">
+      <button class="close-btn" aria-label="Tutup">&times;</button>
+      <h2 id="group-popup-title"></h2>
+      <div class="content" id="group-popup-content"></div>
+      <div class="actions">
+        <button class="btn" id="group-popup-add-group">+ Grup</button>
+        <button class="btn" id="group-popup-close">Tutup</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="popup-overlay" id="fixed-popup" hidden>
+    <div class="popup popup-slim" role="dialog" aria-modal="true" aria-labelledby="fixed-popup-title">
+      <button class="close-btn" aria-label="Tutup">&times;</button>
+      <h2 id="fixed-popup-title"></h2>
+      <div class="content">
+        <p class="popup-slim-note">Dikerjakan di tahap berikutnya</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="popup-overlay" id="item-info-popup" hidden>
+    <div class="popup popup-slim" role="dialog" aria-modal="true" aria-labelledby="item-info-title">
+      <button class="close-btn" aria-label="Tutup">&times;</button>
+      <h2 id="item-info-title"></h2>
+      <div class="content" id="item-info-content"></div>
+      <div class="actions">
+        <button class="btn" id="item-info-copy">Salin</button>
+        <button class="btn" id="item-info-close">Tutup</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/platform.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/stage.js"></script>
+  <script src="js/popup.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

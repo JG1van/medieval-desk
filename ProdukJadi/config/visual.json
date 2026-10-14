@@ -1,0 +1,21 @@
+{
+  "colors": {
+    "dark": "#091413",
+    "greenDark": "#285A48",
+    "greenMid": "#408A71",
+    "greenLight": "#B0E4CC",
+    "paper1": "#e3d0b0",
+    "paper2": "#fdf5e6",
+    "paper3": "#fffaf0",
+    "paperBorder": "#c9b28a",
+    "paperText": "#3a2f1f",
+    "wood": "#7a5c3a",
+    "torchGold": "#ffcc6a",
+    "torchEmber": "#e39b39"
+  },
+  "fonts": { "title": "Grenze Gotisch", "body": "Cardo" },
+  "hover": { "glow": "#B0E4CC", "scale": 1.04 },
+  "popup": { "openMs": 250, "closeMs": 200 },
+  "ambient": { "dustCount": 24, "torchFlicker": true },
+  "respectReducedMotion": true
+}

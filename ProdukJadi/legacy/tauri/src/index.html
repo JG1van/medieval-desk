@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Medieval Desk</title>
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/hotspots.css">
+  <link rel="stylesheet" href="css/popup.css">
+</head>
+<body>
+  <div id="app">
+    <div id="wallpaper-container">
+      <div class="drag-region" data-tauri-drag-region></div>
+      <img id="wallpaper" src="assets/wallpaper.svg" alt="Medieval Desk Wallpaper" draggable="false">
+      <div id="hotspots-layer"></div>
+    </div>
+
+    <div id="window-controls" class="window-controls">
+      <button class="win-btn win-minimize" aria-label="Minimize" title="Minimize">&#8212;</button>
+      <button class="win-btn win-maximize" aria-label="Maximize" title="Maximize">&#9634;</button>
+      <button class="win-btn win-close" aria-label="Close" title="Close">&#10005;</button>
+    </div>
+
+    <button id="edit-toggle" class="control-btn" aria-label="Mode Edit (Ctrl+E)" title="Mode Edit (Ctrl+E)">
+      <svg viewBox="0 0 24 24" width="20" height="20"><path fill="currentColor" d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04a.996.996 0 000-1.41l-2.34-2.34a.996.996 0 00-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg>
+    </button>
+
+    <div id="hotkey-hint" class="control-btn" aria-hidden="true">Ctrl+Alt+D</div>
+  </div>
+
+  <div id="popup-overlay" class="popup-overlay" role="dialog" aria-modal="true" hidden></div>
+
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>

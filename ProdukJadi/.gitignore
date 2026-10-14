@@ -1,0 +1,16 @@
+node_modules/
+src-tauri/target/
+dist/
+*.log
+
+# Local config with absolute paths (do not commit)
+config.json
+*.local.json
+.config.json
+**/config.local.json
+
+# Build outputs
+src-tauri/target/
+**/*.exe
+**/*.msi
+**/*.pdb
