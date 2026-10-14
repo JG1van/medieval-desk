@@ -6,7 +6,6 @@ Aplikasi ini menggabungkan estetika fantasy abad pertengahan dengan fungsi deskt
 
 Screenshot
 
-Wallpaper Medieval Desk
 
 "Medieval Desk Wallpaper"
 <img width="1920" height="1080" alt="Medieval Desk Wallpaper" src="src/assets/wallpaper.svg" />
