@@ -1,212 +1,143 @@
-Medieval Desk
+# Medieval Desk
 
-Medieval Desk adalah aplikasi desktop Windows berupa wallpaper interaktif bertema medieval RPG yang mengubah desktop menjadi ruang kerja bergaya perpustakaan dungeon. Berbagai objek di dalam ruangan, seperti rak buku, loker, peti, perisai, burung gagak, dan bola kristal, dapat berfungsi sebagai hotspot yang dikustomisasi untuk membuka aplikasi, file, folder, shortcut, atau situs web.
+Medieval Desk adalah aplikasi desktop Windows berupa wallpaper interaktif bergaya medieval RPG yang mengubah desktop menjadi ruang kerja bergaya perpustakaan / dungeon. Aplikasi ini berfungsi sebagai launcher visual: objek-objek pada wallpaper dapat dikonfigurasikan sebagai "hotspot" untuk membuka file, folder, shortcut Windows (.lnk), atau URL.
 
-Aplikasi ini menggabungkan estetika fantasy abad pertengahan dengan fungsi desktop launcher yang praktis. Tema warna dan tipografinya juga diselaraskan dengan website portfolio pribadi "JG1van" (https://jg1van.github.io).
+> Catatan: README sebelumnya merujuk `docs/screenshot.png`. File tersebut tidak ada pada repository; sebagai gantinya gunakan wallpaper SVG/PNG di `src/assets/wallpaper.svg` atau `src/assets/wallpaper.png` sebagai ilustrasi.
 
-Screenshot
+Ringkasan Fitur
 
+- Hotspot universal: hampir semua objek pada wallpaper dapat menjadi interaktif.
+- Edit Mode: mengatur posisi/ukuran/nama/tujuan hotspot secara langsung lewat antarmuka.
+- Peluncur aplikasi: hotspot bisa membuka file, folder, shortcut (.lnk), atau URL.
+- Kontrol jendela bertema medieval dan global hotkey `Ctrl + Alt + D` untuk sembunyikan/tampilkan aplikasi.
+- Penyimpanan konfigurasi lokal (localStorage) dan dukungan ekspor/impor konfigurasi.
 
-"Medieval Desk Wallpaper"
-<img width="1920" height="1080" alt="Medieval Desk Wallpaper" src="src/assets/wallpaper.svg" />
+Isi Repository (pada saat update ini)
 
-Fitur Utama
-
-1. Hotspot Universal
-
-Hampir setiap objek di dalam ruangan dapat digunakan sebagai hotspot interaktif.
-
-- Mengatur nama dan fungsi objek sesuai kebutuhan.
-- Membuka file, folder, shortcut Windows (".lnk"), atau URL.
-- Menggunakan area klik transparan berbasis persentase agar posisi hotspot lebih fleksibel terhadap perubahan resolusi.
-- Menampilkan efek glow dan label nama ketika kursor diarahkan ke objek.
-- Mengubah konfigurasi hotspot melalui Edit Mode.
-
-2. Edit Mode
-
-Sesuaikan posisi, ukuran, dan fungsi hotspot langsung melalui antarmuka aplikasi.
-
-- Memindahkan hotspot menggunakan mouse.
-- Mengubah ukuran area klik.
-- Membuka pengaturan melalui ikon gear pada hotspot.
-- Mengubah nama dan tujuan hotspot.
-- Menyimpan perubahan konfigurasi secara otomatis di penyimpanan lokal.
-
-Edit Mode dapat diakses melalui tombol pensil di pojok kanan atas aplikasi.
-
-3. Peluncur Aplikasi
-
-Hotspot berfungsi sebagai launcher visual untuk mengakses berbagai sumber daya di komputer.
-
-Target yang didukung meliputi:
-
-- File lokal.
-- Folder.
-- Shortcut Windows (".lnk").
-- Situs web atau URL.
-
-Setelah target dibuka, Medieval Desk akan diminimalkan secara otomatis sesuai mekanisme aplikasi agar jendela tujuan dapat tampil di depan.
-
-4. Kontrol Jendela
-
-Medieval Desk menyediakan kontrol jendela dengan tampilan yang disesuaikan dengan tema medieval.
-
-- Minimize: meminimalkan jendela aplikasi.
-- Maximize/Restore: memperbesar jendela atau mengembalikannya ke ukuran sebelumnya.
-- Close: menutup aplikasi.
-- Global hotkey: menggunakan "Ctrl + Alt + D" untuk menampilkan atau menyembunyikan aplikasi.
-
-Dalam mode maximized, aplikasi mengisi area layar dengan taskbar Windows tetap terlihat. Wallpaper menggunakan mode cover agar memenuhi area jendela tanpa bar hitam pada berbagai ukuran tampilan.
-
-Zona Interaktif
-
-Setiap objek yang dapat diklik mewakili satu zona dengan fungsi tertentu. Sebagian besar zona dapat dikustomisasi melalui Edit Mode, sedangkan Kalender, Note, dan Bingkai memiliki fungsi tetap.
-
-Objek| Fungsi
-Rak Buku| Hotspot yang dapat dikustomisasi.
-Loker| Hotspot yang dapat dikustomisasi.
-Peti| Hotspot yang dapat dikustomisasi.
-Gulungan| Hotspot yang dapat dikustomisasi.
-Burung Gagak| Hotspot yang dapat dikustomisasi.
-Bola Kristal| Hotspot yang dapat dikustomisasi.
-Perisai| Hotspot yang dapat dikustomisasi.
-Kalender| Zona tetap untuk fungsi kalender.
-Note| Zona tetap untuk fungsi catatan.
-Bingkai| Zona tetap untuk menampilkan foto.
-
-Teknologi yang Digunakan
-
-Teknologi| Kegunaan
-"Tauri v2" (https://v2.tauri.app/)| Framework aplikasi desktop.
-Rust| Backend dan integrasi dengan sistem operasi Windows.
-HTML| Struktur antarmuka.
-CSS| Tampilan, tata letak, dan efek visual.
-JavaScript (Vanilla)| Logika dan interaksi frontend.
-JSON| Penyimpanan konfigurasi lokal.
-SVG / PNG| Aset visual dan wallpaper.
-Grenze Gotisch| Tipografi bergaya gothic.
-Cardo| Tipografi pendukung.
-"OpenCode" (https://opencode.ai)| Agen AI yang membantu proses pengembangan melalui pendekatan vibe coding.
-
-Screenshot
-
-"Medieval Desk" (docs/screenshot.png)
+- src/: kode frontend (HTML, CSS, JS)
+  - src/index.html
+  - src/assets/wallpaper.svg, src/assets/wallpaper.png
+  - src/js/ (app.js, editor.js, hotspots.js, storage.js, dll.)
+- src-tauri/: backend Rust dan konfigurasi Tauri
+- assets/: aset tambahan (wallpaper, font, dll.)
+- package.json, package-lock.json
+- setup-and-check.ps1, build.cmd, preview-source.webp
 
 Persyaratan Sistem
 
-Sebelum menjalankan proyek dari source code, pastikan perangkat menggunakan Windows 10 atau Windows 11 dan telah memiliki:
+- Windows 10 atau Windows 11
+- Node.js (versi LTS direkomendasikan)
+- Rust toolchain (rustup)
+- Microsoft C++ Build Tools (dibutuhkan untuk beberapa dependensi native)
+- WebView2 Runtime (untuk komponen WebView pada Windows)
 
-- "Node.js" (https://nodejs.org/).
-- "Rust" (https://rustup.rs/).
-- Microsoft C++ Build Tools.
-- WebView2 Runtime.
+Instalasi dan Menjalankan (pengembang)
 
-Untuk persyaratan tambahan dan konfigurasi lingkungan pengembangan, lihat "dokumentasi resmi Tauri v2" (https://v2.tauri.app/start/prerequisites/).
+1. Clone:
 
-Instalasi dan Menjalankan Aplikasi
+   git clone https://github.com/JG1van/medieval-desk.git
+   cd medieval-desk
 
-1. Clone repository
+2. Instal dependency:
 
-git clone https://github.com/JG1van/medieval-desk.git
+   npm install
 
-2. Masuk ke direktori proyek
+3. Jalankan mode pengembangan:
 
-cd medieval-desk
+   npm run tauri dev
 
-3. Instal dependency
+Perintah `npm run tauri dev` menjalankan aplikasi dalam mode pengembangan sesuai konfigurasi di package.json.
 
-npm install
+Build Produksi
 
-4. Jalankan mode pengembangan
-
-npm run tauri dev
-
-Perintah ini menjalankan aplikasi dalam mode pengembangan sesuai script yang dikonfigurasi dalam "package.json".
-
-Build Aplikasi
-
-Untuk membangun aplikasi desktop versi produksi, jalankan:
+Untuk membangun aplikasi desktop produksi:
 
 npm run tauri build
 
-Jika script tersebut telah dikonfigurasi dengan benar, Tauri akan membangun aplikasi sesuai pengaturan proyek.
+Hasil build biasanya berada di `src-tauri/target/release/` dan bundel (installer) di `src-tauri/target/release/bundle/` bila bundling diaktifkan.
 
-Hasil build umumnya tersedia di:
+Konfigurasi Hotspot (detail teknis)
 
-src-tauri/target/release/
+Medieval Desk menyimpan konfigurasi hotspot di localStorage browser-wrapped aplikasi. Kunci yang dipakai:
 
-Jika bundling diaktifkan, installer atau paket distribusi dapat ditemukan di:
+- `medieval-desk-hotspots-v2` — daftar hotspot (format JSON array)
+- `medieval-desk-edit-mode` — boolean ("true"/"false") untuk menyimpan status Edit Mode
+- `medieval-desk-layout-version` — versi layout/pengaturan
+- `medieval-desk-popup-<key>` — data popup/temporary per key
 
-src-tauri/target/release/bundle/
+Format objek hotspot (contoh minimal):
 
-Lokasi dan format hasil akhir mengikuti konfigurasi Tauri dan target distribusi yang digunakan.
+{
+  "id": "rack",
+  "name": "Rak Buku",
+  "x": 3.2,     // posisi X dalam persen relatif ke lebar wallpaper
+  "y": 18.5,    // posisi Y dalam persen relatif ke tinggi wallpaper
+  "w": 21.0,    // lebar area klik dalam persen
+  "h": 66.5,    // tinggi area klik dalam persen
+  "type": "list", // tipe: 'list' | 'photo' | 'calendar' | 'note' | ...
+  "items": [ { "name": "Catatan", "url": "C:\\path\\to\\file.txt" } ], // untuk type 'list'
+  "target": "C:\\path\\to\\image.jpg", // untuk type 'photo'
+  "displayMode": "popup-list" // atau 'direct', 'popup-grid', dll.
+}
 
-Cara Penggunaan
+- Posisi dan ukuran memakai persentase sehingga layout relatif terhadap resolusi layar.
+- Field `items` hanya diperlukan untuk `type: 'list'`.
+- Field `target` dipakai untuk `type: 'photo'` atau target tunggal.
 
-1. Jalankan aplikasi. Wallpaper ruangan medieval akan muncul sebagai antarmuka desktop interaktif.
-2. Gunakan hotspot. Arahkan kursor ke objek untuk melihat efek visual dan label, lalu klik untuk menjalankan fungsi yang telah dikonfigurasi.
-3. Masuk ke Edit Mode. Klik tombol pensil di pojok kanan atas.
-4. Atur hotspot. Geser atau ubah ukuran area klik, kemudian klik ikon gear untuk mengubah nama dan tujuan hotspot.
-5. Selesaikan pengeditan. Klik kembali tombol pensil untuk keluar dari Edit Mode.
-6. Tampilkan atau sembunyikan aplikasi. Tekan "Ctrl + Alt + D".
-7. Kelola jendela. Gunakan tombol minimize, maximize/restore, atau close yang tersedia di pojok kanan atas.
+API Export / Import
 
-Perubahan konfigurasi hotspot disimpan secara lokal sesuai mekanisme penyimpanan yang digunakan aplikasi.
+Kode menyediakan fungsi ekspor/impor konfigurasi yang dapat dipakai dari UI (jika tersedia) atau console:
 
-Struktur Proyek
+- `exportConfig()` → mengembalikan JSON string berisi { hotspots, editMode, version }
+- `importConfig(json)` → mengimpor JSON yang berisi struktur di atas dan menyimpannya ke localStorage
 
-Gambaran umum struktur direktori:
+Implementasi penyimpanan ada di `src/js/storage.js` — baca file tersebut untuk detail migrasi versi, default hotspot, dan proses merge dengan konfigurasi pengguna.
 
-medieval-desk/
-├── assets/         # Wallpaper, font, dan aset visual
-├── docs/           # Dokumentasi dan screenshot
-├── src/            # Antarmuka HTML, CSS, dan JavaScript
-├── src-tauri/      # Backend Rust dan konfigurasi Tauri
-├── package.json    # Script dan dependency proyek
-├── package-lock.json
-├── .gitignore
-└── README.md
+Perilaku & Keterbatasan
 
-Struktur aktual dapat mencakup file dan direktori tambahan sesuai implementasi proyek.
+- Aplikasi berjalan sebagai jendela biasa: dapat tertutup oleh jendela lain. Gunakan `Ctrl + Alt + D` atau klik di taskbar untuk menampilkannya kembali.
+- Multi-monitor dan skala DPI: hotspot memakai persentase, tetapi perbedaan DPI pada konfigurasi multi-monitor dapat memengaruhi akurasi. Perlu pengujian lebih lanjut.
+- Validasi target: aplikasi menyimpan path/URL yang diberikan, tetapi jika tujuan tidak ditemukan saat klik, perilaku tergantung OS—sebaiknya periksa keberadaan file/shortcut/URL.
 
-Keterbatasan
+Keamanan
 
-- Jendela aplikasi: Medieval Desk berjalan sebagai jendela desktop biasa, sehingga dapat tertutupi oleh jendela lain. Gunakan "Ctrl + Alt + D" atau taskbar untuk kembali ke aplikasi.
-- Multi-monitor: perilaku posisi hotspot pada konfigurasi beberapa monitor masih perlu diuji lebih lanjut.
-- Skala DPI: perbedaan resolusi dan skala tampilan Windows dapat memengaruhi akurasi posisi hotspot.
-- Validasi target: path file, folder, shortcut, dan URL perlu ditangani dengan baik apabila target tidak tersedia atau gagal dibuka.
+- Hotspot dapat membuka file atau URL luar; berhati-hati dengan target dari sumber tak tepercaya.
 
-Rencana Pengembangan
+Troubleshooting (Masalah umum)
 
-Beberapa pengembangan yang dapat dipertimbangkan untuk meningkatkan fungsionalitas aplikasi:
+- WebView2 tidak terinstall: instal WebView2 Runtime dari Microsoft.
+- Build gagal karena toolchain Rust/C++: pasang Microsoft C++ Build Tools dan rustup.
+- Hotkey `Ctrl + Alt + D` bentrok: matikan atau ganti hotkey lain di OS atau di konfigurasi aplikasi (jika disediakan).
 
-- Backup, ekspor, dan impor konfigurasi hotspot.
-- Preset layout desktop dan tema visual.
-- Dukungan multi-monitor yang lebih baik.
-- Penyesuaian posisi hotspot berdasarkan resolusi dan DPI.
-- Validasi target serta penanganan error yang lebih informatif.
-- Pengaturan efek visual dan shortcut keyboard.
-- Dokumentasi atau tutorial penggunaan di dalam aplikasi.
+Dokumentasi & Pengembangan
 
-Daftar tersebut merupakan ide pengembangan, bukan pernyataan bahwa fitur-fitur tersebut sudah tersedia.
+- Penjelasan kode utama terkait hotspot dan penyimpanan ada di:
+  - `src/js/hotspots.js` — logika interaksi hotspot
+  - `src/js/editor.js` — logika Edit Mode
+  - `src/js/storage.js` — migrasi, loading, saving, export/import
+- Font yang dipakai: Grenze Gotisch, Cardo (periksa lisensi font sebelum distribusi)
 
-Status Proyek
+Lisensi
 
-Proyek pribadi — masih dalam pengembangan.
+- Repository saat ini tidak memiliki file LICENSE. Disarankan menambahkan lisensi (mis. MIT atau Apache-2.0) untuk menjelaskan hak penggunaan dan kontribusi.
 
-Medieval Desk dikembangkan secara bertahap dengan fokus pada pengalaman desktop yang personal, estetis, dan fungsional melalui perpaduan wallpaper fantasy, zona interaktif, serta launcher yang dapat dikustomisasi.
+Kontribusi
 
-Inspirasi dan Proses Pengembangan
+- Untuk kontribusi: buka issue untuk diskusi perubahan besar, buat PR untuk perbaikan/fitur. Tambahkan test dan dokumentasi bila perlu.
 
-Konsep zona desktop interaktif dipelajari dari proyek berikut:
+Kontak
 
-- "BentoDesk" (https://github.com/ZRainbow1275/bentodesk)
-- "DeskRealm" (https://github.com/ekimaku/DeskRealm)
+- Issues di GitHub adalah cara terbaik untuk melaporkan bug atau meminta fitur: https://github.com/JG1van/medieval-desk/issues
 
-Kedua proyek tersebut menjadi referensi konseptual. Tidak ada kode dari proyek tersebut yang disalin.
+Perubahan yang saya lakukan sekarang
 
-Medieval Desk dirancang dan diarahkan secara mandiri, dengan proses penulisan kode yang dibantu agen AI melalui "OpenCode" (https://opencode.ai) menggunakan pendekatan vibe coding. Konsep, tata letak, tema visual, dan keputusan fitur ditentukan selama proses pengembangan, sementara agen AI membantu implementasi kode.
+- Memperbarui README.md agar lebih lengkap dan menjelaskan struktur, konfigurasi (format JSON), export/import, serta keterbatasan.
 
----
+Catatan lanjutan
 
-Dikembangkan sebagai proyek personal untuk menghadirkan pengalaman desktop Windows yang lebih unik melalui perpaduan estetika medieval RPG dan fungsionalitas sehari-hari.
+- Anda ingin README benar-benar komplit. Jika setuju, saya bisa juga:
+  - Menambahkan contoh file konfigurasi `example-config.json` ke repo.
+  - Menambahkan `CONTRIBUTING.md` dan `CHANGELOG.md`.
+  - Menambahkan file `LICENSE` (harap konfirmasi lisensi yang diinginkan).
+
+Jika Anda setuju, beri tahu opsi mana yang mau ditambahkan selanjutnya (contoh: "Tambahkan LICENSE MIT dan example-config.json"), dan saya akan buat commit/PR berikutnya.
