@@ -27,27 +27,20 @@
       },
       "groups": [
         {
-          "name": "Rak 1",
-          "items": []
-        },
-        {
-          "name": "Rak 2",
-          "items": []
-        },
-        {
-          "name": "Rak 3",
-          "items": []
-        },
-        {
-          "name": "Rak 4",
-          "items": []
+          "name": "Rak Buku",
+          "items": [
+            {
+              "label": "Rak Buku",
+              "target": "D:\\@\\TOOL\\tools(operasi opencode).lnk"
+            }
+          ]
         }
       ],
-      "displayMode": ""
+      "displayMode": "direct"
     },
     {
       "id": "kalender",
-      "label": "Kalender",
+      "label": "Claude",
       "kind": "fixed",
       "fixedType": "calendar",
       "box": {
@@ -56,8 +49,18 @@
         "w": 5.3,
         "h": 11.9
       },
-      "groups": null,
-      "displayMode": ""
+      "groups": [
+        {
+          "name": "Claude",
+          "items": [
+            {
+              "label": "Claude",
+              "target": "D:\\@\\TOOL\\Claude.lnk"
+            }
+          ]
+        }
+      ],
+      "displayMode": "direct"
     },
     {
       "id": "gulungan",
@@ -72,11 +75,48 @@
       },
       "groups": [
         {
-          "name": "Umum",
-          "items": []
+          "name": "Gulungan",
+          "items": [
+            {
+              "label": "9Router(kelola endpoint ai).lnk",
+              "target": "D:\\@\\TOOL\\9Router(kelola endpoint ai).lnk"
+            },
+            {
+              "label": "Adobe(kelola warna desain).lnk",
+              "target": "D:\\@\\TOOL\\Adobe(kelola warna desain).lnk"
+            },
+            {
+              "label": "cpanel(kelola hosting panel).lnk",
+              "target": "D:\\@\\TOOL\\cpanel(kelola hosting panel).lnk"
+            },
+            {
+              "label": "delphitools(tools privasi lokal).lnk",
+              "target": "D:\\@\\TOOL\\delphitools(tools privasi lokal).lnk"
+            },
+            {
+              "label": "Doop(canvas desain ai).lnk",
+              "target": "D:\\@\\TOOL\\Doop(canvas desain ai).lnk"
+            },
+            {
+              "label": "Excalidraw(whiteboard sketsa tangan).lnk",
+              "target": "D:\\@\\TOOL\\Excalidraw(whiteboard sketsa tangan).lnk"
+            },
+            {
+              "label": "OpenClaw(panel kontrol ai).lnk",
+              "target": "D:\\@\\TOOL\\OpenClaw(panel kontrol ai)15f50ae7ef826ecd51738067197a13d3a7a0ea275c3450d6.lnk"
+            },
+            {
+              "label": "VibeUI(kumpulan prompt ui).lnk",
+              "target": "D:\\@\\TOOL\\VibeUI(kumpulan prompt ui).lnk"
+            },
+            {
+              "label": "E2B(sandbox ai cloud).lnk",
+              "target": "D:\\@\\TOOL\\E2B(sandbox ai cloud).lnk"
+            }
+          ]
         }
       ],
-      "displayMode": ""
+      "displayMode": "popup-grid"
     },
     {
       "id": "bingkai",
@@ -89,8 +129,18 @@
         "w": 19.2,
         "h": 44.0
       },
-      "groups": null,
-      "displayMode": ""
+      "groups": [
+        {
+          "name": "Bingkai",
+          "items": [
+            {
+              "label": "Bingkai",
+              "target": "C:\\Users\\ASUS\\OneDrive\\Pictures"
+            }
+          ]
+        }
+      ],
+      "displayMode": "direct"
     },
     {
       "id": "note",
@@ -103,8 +153,18 @@
         "w": 6.0,
         "h": 10.6
       },
-      "groups": null,
-      "displayMode": ""
+      "groups": [
+        {
+          "name": "Note",
+          "items": [
+            {
+              "label": "Note",
+              "target": "C:\\Windows\\System32\\notepad.exe"
+            }
+          ]
+        }
+      ],
+      "displayMode": "direct"
     },
     {
       "id": "bola_kristal",
@@ -119,15 +179,20 @@
       },
       "groups": [
         {
-          "name": "Umum",
-          "items": []
+          "name": "Bola Kristal",
+          "items": [
+            {
+              "label": "Bola Kristal",
+              "target": "C:\\Users\\ASUS\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\Google Chrome.lnk"
+            }
+          ]
         }
       ],
-      "displayMode": ""
+      "displayMode": "direct"
     },
     {
       "id": "loker",
-      "label": "Loker",
+      "label": "Lemari",
       "kind": "configurable",
       "fixedType": null,
       "box": {
@@ -138,15 +203,48 @@
       },
       "groups": [
         {
-          "name": "Pintu Kiri",
-          "items": []
-        },
-        {
-          "name": "Pintu Kanan",
-          "items": []
+          "name": "Lemari",
+          "items": [
+            {
+              "label": "Docker Desktop.lnk",
+              "target": "D:\\@\\ALL\\Docker Desktop.lnk"
+            },
+            {
+              "label": "VideoPsalm.exe",
+              "target": "D:\\@\\ALL\\VP PORTABLE 2021\\VideoPsalm 1.26 Portable [2020]\\VideoPsalm.exe"
+            },
+            {
+              "label": "SQLyog.exe.lnk",
+              "target": "D:\\@\\TOOL\\SQLyog.exe.lnk"
+            },
+            {
+              "label": "Visual Studio Code.lnk",
+              "target": "D:\\@\\TOOL\\Visual Studio Code.lnk"
+            },
+            {
+              "label": "GitHub Desktop.lnk",
+              "target": "D:\\@\\TOOL\\GitHub Desktop.lnk"
+            },
+            {
+              "label": "Word.lnk",
+              "target": "C:\\ProgramData\\Microsoft\\Windows\\Start Menu\\Programs\\Word.lnk"
+            },
+            {
+              "label": "PowerPoint.lnk",
+              "target": "C:\\ProgramData\\Microsoft\\Windows\\Start Menu\\Programs\\PowerPoint.lnk"
+            },
+            {
+              "label": "Excel.lnk",
+              "target": "C:\\ProgramData\\Microsoft\\Windows\\Start Menu\\Programs\\Excel.lnk"
+            },
+            {
+              "label": "Laragon.lnk",
+              "target": "C:\\ProgramData\\Microsoft\\Windows\\Start Menu\\Programs\\Laragon\\Laragon.lnk"
+            }
+          ]
         }
       ],
-      "displayMode": ""
+      "displayMode": "popup-grid"
     },
     {
       "id": "perisai",
@@ -165,16 +263,12 @@
           "items": [
             {
               "label": "Perisai",
-              "target": "C:\\Users\\ASUS\\OneDrive\\Desktop\\TOOL\\9Router(kelola endpoint ai).lnk"
-            },
-            {
-              "label": "Perisai",
-              "target": "C:\\Users\\ASUS\\OneDrive\\Desktop\\TOOL\\9Router(kelola endpoint ai).lnk"
+              "target": "C:\\Users\\ASUS\\AppData\\Local\\Microsoft\\WindowsApps\\wt.exe"
             }
           ]
         }
       ],
-      "displayMode": "popup-grid"
+      "displayMode": "direct"
     },
     {
       "id": "burung_gagak",
@@ -189,11 +283,16 @@
       },
       "groups": [
         {
-          "name": "Umum",
-          "items": []
+          "name": "Burung Gagak",
+          "items": [
+            {
+              "label": "Burung Gagak",
+              "target": "D:\\@\\ALL\\WhatsApp Web.lnk"
+            }
+          ]
         }
       ],
-      "displayMode": ""
+      "displayMode": "direct"
     },
     {
       "id": "peti",
@@ -208,11 +307,16 @@
       },
       "groups": [
         {
-          "name": "Downloads",
-          "items": []
+          "name": "Peti",
+          "items": [
+            {
+              "label": "Peti",
+              "target": "C:\\Users\\ASUS\\Downloads"
+            }
+          ]
         }
       ],
-      "displayMode": ""
+      "displayMode": "direct"
     }
   ],
   "widgets": []
