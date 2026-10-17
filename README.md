@@ -1,5 +1,55 @@
 # Medieval Desk
 
+## Komposisi bahasa di repo (ringkas)
+- JavaScript: 37.8%
+- CSS: 20.6%
+- Rust: 14.1%
+- C#: 13.9%  ← ada implementasi native (WPF spike) di `Native-C#/MedievalDesk.Spike`
+- TypeScript: 9.9%
+- HTML: 1.9%
+- Other: 1.8%
+
+Catatan: bagian C# adalah jalur native (WPF spike). Pengguna yang ingin menjalankan versi native bisa membangun dari source atau menjalankan hasil publish (.exe).
+
+## Menjalankan Native-C# (MedievalDesk.Spike)
+
+Prasyarat:
+- Windows
+- .NET 8 SDK terpasang (https://dotnet.microsoft.com/download/dotnet/8.0)
+
+Ada dua cara:
+
+A) Untuk development (jalankan langsung)
+1. Buka terminal di folder proyek:
+   ```
+   cd Native-C#\MedievalDesk.Spike
+   ```
+2. Jalankan:
+   ```
+   dotnet run --configuration Debug
+   ```
+   Aplikasi akan berjalan dari build Debug (bagus untuk pengembangan dan debugging).
+
+B) Untuk pengguna / rilis (buat build release dan jalankan exe)
+1. Publish release (hasil berupa exe siap dipakai):
+   ```
+   cd Native-C#\MedievalDesk.Spike
+   dotnet publish -c Release -r win-x64 -o ./publish
+   ```
+   (Opsional: single-file self-contained tanpa perlu .NET di target)
+   ```
+   dotnet publish -c Release -r win-x64 -p:PublishSingleFile=true -p:SelfContained=true -o ./publish
+   ```
+2. Jalankan executable yang dihasilkan:
+   ```
+   ./publish/MedievalDesk.Spike.exe
+   ```
+3. Jika Anda menyiapkan paket Final, salin exe tersebut ke `Final/installers/MedievalDesk.Spike.exe` untuk distribusi atau attach ke GitHub Release.
+
+Catatan singkat:
+- Build artifacts (bin/, obj/, publish/) tidak disimpan di repo; mereka ada lokal setelah Anda menjalankan build/publish.
+- Untuk distribusi publik lebih baik unggah exe ke GitHub Release atau buat installer daripada commit binary ke source tree.
+
 Medieval Desk adalah eksperimen aplikasi desktop Windows bergaya medieval RPG yang mengubah desktop menjadi ruangan interaktif bertema perpustakaan dungeon. Objek di dalam ruangan berfungsi sebagai hotspot yang dapat membuka file, folder, shortcut (.lnk), atau URL, dengan mode edit untuk mengubah konfigurasi hotspot dan menyimpannya ke JSON.
 
 Proyek ini ditulis dalam beberapa jalur pengembangan: prototype web (`Prototipe2`), prototype native Tauri (`Prototipe` dan `medieval-desk-native`), serta spike native C# WPF (`Native-C#`). Tujuan utamanya adalah mengeksplor pengalaman desktop yang estetik, personal, dan berguna.
