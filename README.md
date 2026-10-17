@@ -1,182 +1,263 @@
 # Medieval Desk
 
-Medieval Desk adalah aplikasi desktop Windows berupa wallpaper interaktif bertema medieval RPG yang mengubah desktop menjadi ruang kerja bergaya perpustakaan dungeon.
+Medieval Desk adalah proyek eksperimen aplikasi desktop Windows bertema medieval RPG. Ruangannya berupa perpustakaan dungeon, dan setiap benda di dalamnya (rak buku, loker, peti, perisai, burung gagak, bola kristal, kalender, note, dan bingkai) dirancang sebagai tempat untuk membuka file, folder, aplikasi, atau URL.
 
-Berbagai objek di dalam ruangan—seperti rak buku, loker, peti, perisai, burung gagak, dan bola kristal—dapat berfungsi sebagai hotspot yang dikustomisasi untuk membuka aplikasi, file, folder, shortcut, atau situs web.
+**Status: eksperimen aktif.** Wallpaper ruangan dipasang secara otomatis saat spike WPF dijalankan. Lapisan ruangan dapat ditampilkan di atas desktop, benda dapat diklik untuk membuka isinya, dan setiap benda dapat diisi melalui mode edit yang menyimpan datanya ke JSON.
 
 ---
 
-## Struktur Proyek
+## Tentang Proyek Ini
+
+**Apa:** aplikasi desktop Windows berbentuk ruangan medieval.
+
+**Fungsi yang sudah berjalan:**
+
+- Lapisan ruangan tampil di atas desktop (jendela transparan, selalu di atas).
+- Klik benda untuk membuka isinya (langsung atau lewat popup).
+- Mode edit untuk mengisi item pada setiap benda dan menyimpannya ke JSON.
+- Pintasan papan ketik untuk menampilkan, menyembunyikan, mengedit, dan keluar.
+
+**Fungsi yang direncanakan:**
+
+- Kalender, note, dan bingkai foto memiliki fungsi tetap (belum diaktifkan).
+- Pengujian di beberapa monitor dan skala DPI yang berbeda.
+
+**Yang sudah dibuat:**
+
+- Gambar ruangan sebagai wallpaper (dibuat dengan AI image generation).
+- Prototipe web untuk menguji tampilan dan data.
+- Aplikasi Tauri yang bisa dibuka sebagai jendela biasa.
+- Spike WPF yang menampilkan ruangan sebagai jendela transparan selalu di atas, lengkap dengan popup, mode edit, dan penyimpanan data.
+
+**Yang belum berfungsi:**
+
+- Hasil akhir (`Final/`) belum dibuat.
+- Belum diuji di beberapa monitor dan skala DPI yang berbeda.
+
+---
+
+## Bahasa dan Teknologi
+
+| Bagian | Bahasa / Teknologi |
+|---|---|
+| Prototipe web | HTML, CSS, JavaScript |
+| Aplikasi Tauri | Rust (backend), React + TypeScript (tampilan) |
+| Spike WPF | C# (.NET 8), WPF, P/Invoke Win32 |
+| Data dan konfigurasi | JSON |
+| Tipografi | Grenze Gotisch, Cardo |
+
+---
+
+## Isi Folder
+
+| Folder | Isi | Bisa dibuka? |
+|---|---|---|
+| `Prototipe2/` | Prototipe web dengan wallpaper, data, dan konfigurasi | Ya, lewat browser (lihat di bawah) |
+| `Prototipe/` | Aplikasi Tauri versi awal, berupa HTML, CSS, JS, dan Rust | Hanya build |
+| `medieval-desk-native/` | Aplikasi Tauri dengan React dan Rust | Ya, `.exe` setelah build |
+| `Native-C#/` | Solusi `MedievalDesk.sln` berisi spike WPF `MedievalDesk.Spike/`, ditambah `SPEC-NATIVE.md` dan `README.md` | Ya, lewat `dotnet run` |
+| `Final/` | Placeholder untuk hasil akhir | Belum ada isi |
+| `docs/` | Rencana, log, dan laporan pengujian | Berupa dokumen teks |
+| `data/` | Data lama | Kosong |
+
+---
+
+## Cara Menjalankan
+
+### 1. Pasang wallpaper ruangan
+
+Spike WPF memasang wallpaper ruangan secara otomatis saat dijalankan, dan mengembalikan wallpaper asli saat keluar. Langkah manual berikut hanya diperlukan bila ingin memakai wallpaper ruangan tanpa menjalankan spike.
+
+1. Klik kanan desktop, lalu pilih **Personalize > Background**.
+2. Pilih **Picture**, klik **Browse**, lalu pilih `Prototipe2\assets\wallpaper.png`.
+3. Pilih **Fill**.
+
+### 2. Prototipe web (`Prototipe2/`)
+
+Dengan Laragon aktif, buka:
 
 ```
-medieval-desk/
-├── data/                     # Folder data (staging, saat ini kosong)
-├── medieval-desk-native/     # Aplikasi Tauri + React (source & build)
-│   ├── client/               # Kode React/Vite UI
-│   ├── src-tauri/            # Backend Rust + konfigurasi Tauri
-│   ├── package.json
-│   └── package-lock.json
-├── ProdukJadi/               # Prototipe web + dokumentasi lengkap
-│   ├── assets/               # Wallpaper, font, visual
-│   ├── config/               # visual.json warna/effek
-│   ├── data/                 # medieval-desk.json skema v1
-│   ├── docs/                 # PLAN.md, CONTRACT.md, PROTOTYPE-NOTES.md
-│   ├── js/                   # platform.js, data.js, stage.js, popup.js, app.js
-│   ├── legacy/               # Arsip Tauri lama
-│   ├── native/               # SPEC.md versi C# .NET 8 WPF (belum dikerjakan)
-│   ├── index.html
-│   ├── README.md, AGENTS.md, PLAN.md
-│   └── .gitignore
-└── Prototipe/                # Prototipe awal (vanilla JS/HTML)
-    ├── assets/
-    ├── src/                  # HTML/CSS/JS logika
-    ├── src-tauri/
-    ├── .gitignore
-    ├── build.cmd
-    ├── package.json
-    └── preview-source.webp
+http://localhost/@GITHUB/medieval-desk/Prototipe2/
 ```
 
----
+Tanpa Laragon, jalankan dari folder `Prototipe2`:
 
-## Fitur Utama
+```
+python -m http.server 8000
+```
 
-1. **Hotspot Universal** — hampir setiap objek di dalam ruangan dapat digunakan sebagai hotspot interaktif. Pengaturan nama, fungsi, area klik berbasis persentase, efek glow, label tooltip, dan edit mode.
+Lalu buka `http://localhost:8000`. Jangan buka `index.html` langsung dari file, karena data JSON tidak akan terbaca.
 
-2. **Edit Mode** — masuk dengan tombol **E** (atau klik tombol pensil di versi lama). Geser/ubah ukuran area klik, ubah nama/tujuan hotspot, simpan konfigurasi ke localStorage/SQLite.
+### 3. Aplikasi Tauri (`medieval-desk-native`)
 
-3. **Peluncur Aplikasi** — hotspot sebagai launcher visual untuk file, folder, shortcut Windows (.lnk), atau URL. Setelah target dibuka, aplikasi diminimalkan otomatis (`settings.minimizeAfterLaunch`).
+Jalankan langsung:
 
-4. **Kontrol Jendela** — tombol minimize/maximize/restore/close yang disesuaikan tema medieval, plus global hotkey **Ctrl + Alt + D** untuk menampilkan/sembunyikan aplikasi.
+```
+cd "medieval-desk\medieval-desk-native\src-tauri\target\release"
+.\medieval-desk-native.exe
+```
 
----
+Jika `.exe` belum ada, build dulu:
 
-## Teknologi
-
-| Teknologi | Kegunaan |
-|-----------|----------|
-| Tauri v2 | Framework aplikasi desktop |
-| Rust | Backend & integrasi sistem operasi |
-| React + Vite | Frontend UI (medieval-desk-native) |
-| HTML/CSS/JS (Vanilla) | Prototipe web (ProdukJadi) |
-| JSON | Penyimpanan konfigurasi lokal |
-| SVG/PNG | Aset visual & wallpaper |
-| Grenze Gotisch / Cardo | Tipografi bergaya gothic |
-| OpenCode | Agen AI membantu pengembangan |
-
----
-
-## Persyaratan
-
-- Windows 10 / 11
-- **Node.js** (https://nodejs.org/)
-- **Rust** (https://rustup.rs/)
-- Microsoft C++ Build Tools
-- WebView2 Runtime
-
----
-
-## Instalasi & Menjalankan (medieval-desk-native)
-
-```bash
-# 1. Clone repository
-git clone https://github.com/JG1van/medieval-desk.git
-
-# 2. Masuk ke direktori proyek
-cd medieval-desk
-
-# 3. Instal dependency
+```
+cd medieval-desk\medieval-desk-native
 npm install
-
-# 4. Jalankan mode pengembangan
-npm run tauri dev
-
-# 5. Build aplikasi (produksi)
 npm run tauri build
 ```
 
-Hasil build:
-- `src-tauri/target/release/medieval-desk-native.exe` (≈ 32.7 MB)
-- Installer MSI: `src-tauri/target/release/bundle/msi/Medieval Desk_0.1.0_x64_en-US.msi` (≈ 20.3 MiB)
-- Installer NSIS: `src-tauri/target/release/bundle/nsis/Medieval Desk_0.1.0_x64-setup.exe` (≈ 18.4 MiB)
+### 4. Spike WPF (`Native-C#/`)
+
+Membutuhkan .NET 8 SDK.
+
+```
+cd "C:\LARAGON-2025-1\www\@GITHUB\medieval-desk"
+dotnet run --project "Native-C#\MedievalDesk.Spike" -c Release
+```
+
+Saat dijalankan, program memasang wallpaper ruangan dan menampilkan lapisan ruangan. Tekan **Ctrl+Alt+Q** untuk keluar.
 
 ---
 
-## Cara Penggunaan
+## Pintasan Papan Ketik (Hotkey)
 
-1. Jalankan aplikasi. Wallpaper ruangan medieval muncul sebagai antarmuka desktop interaktif.
-2. Arahkan kursor ke objek untuk melihat efek visual dan label, lalu klik untuk menjalankan fungsi.
-3. Tekan **E** untuk masuk **Edit Mode**. Geser/ubah ukuran area klik, klik ikon gear pada hotspot untuk mengubah nama/tujuan.
-4. Tekan **Esc** untuk menutup popup / keluar Edit Mode.
-5. Tekan **Ctrl + Alt + D** untuk menampilkan/sembunyikan aplikasi (global hotkey).
-6. Gunakan tombol minimize/maximize/restore/close di pojok kanan atas.
+Seluruh interaksi dengan lapisan ruangan dikendalikan lewat pintasan papan ketik. Pintasan bekerja secara global, artinya tetap aktif walaupun jendela spike tidak sedang terfokus.
+
+### Ringkasan
+
+| Hotkey | Fungsi singkat |
+|---|---|
+| **Ctrl+Alt+D** | Tampilkan atau sembunyikan lapisan ruangan |
+| **Ctrl+Alt+E** | Masuk atau keluar dari mode edit |
+| **Ctrl+E** | Sama dengan Ctrl+Alt+E, khusus saat jendela spike sedang terfokus |
+| **Ctrl+Alt+Q** | Keluar dari aplikasi dan kembalikan wallpaper asli |
+| **Esc** | Menutup form, lalu popup, lalu lapisan (berlapis) |
+
+### Ctrl+Alt+D — Tampilkan atau sembunyikan lapisan
+
+Pintasan ini digunakan untuk menampilkan dan menyembunyikan lapisan ruangan tanpa menutup aplikasi.
+
+- **Untuk apa:** menyembunyikan ruangan sesaat ketika ingin melihat ikon desktop, membuka jendela lain, atau bekerja tanpa gangguan lapisan.
+- **Kapan dipakai:** saat lapisan ruangan menutupi sesuatu yang ingin dilihat, atau saat ingin menampilkan kembali setelah disembunyikan.
+- **Cara pakai:** tekan **Ctrl+Alt+D** sekali untuk menyembunyikan, tekan sekali lagi untuk menampilkan kembali.
+- **Yang terjadi:** jendela transparan berisi ruangan disembunyikan atau ditampilkan kembali pada posisi semula.
+- **Catatan:** wallpaper ruangan tetap terpasang; yang disembunyikan hanya lapisan interaktif di atasnya. Status tampil dapat dipastikan dari log `spike-log.txt`.
+
+### Ctrl+Alt+E — Mode edit
+
+Mode edit digunakan untuk mengisi atau mengubah isi setiap benda di ruangan.
+
+- **Untuk apa:** mengatur nama, jenis tampilan, dan daftar item (label beserta target) pada setiap benda.
+- **Cara pakai:** tekan **Ctrl+Alt+E** untuk masuk ke mode edit. Setelah itu, klik salah satu benda untuk membuka form isian. Tekan **Ctrl+Alt+E** sekali lagi untuk keluar dari mode edit.
+- **Yang terjadi:**
+  - Di dalam mode edit, klik pada benda akan membuka **form konfigurasi**, bukan popup atau membuka target.
+  - Di luar mode edit, klik pada benda akan menjalankan fungsinya (membuka popup atau membuka target langsung).
+- **Isi form konfigurasi:**
+  - **@NAMA:** nama benda yang akan ditampilkan pada popup.
+  - **@JENIS:** cara benda merespons klik. Pilihannya **LANGSUNG**, **POP UP 3X3**, atau **POP UP LIST**.
+  - **@URL:** target atau lokasi yang dibuka (URL, file, folder, atau aplikasi).
+  - **|TAMBAH|:** tombol untuk menambah item ke dalam daftar benda. Tombol ini hanya muncul ketika **@JENIS** bernilai **POP UP 3X3** atau **POP UP LIST**, dan disembunyikan ketika **@JENIS** bernilai **LANGSUNG**.
+  - **SIMPAN:** menyimpan perubahan ke JSON, lalu menutup form.
+  - **BATAL:** menutup form tanpa menyimpan.
+- **Efek tiap pilihan JENIS:**
+  - **LANGSUNG:** klik pada benda akan langsung membuka target tanpa menampilkan popup. Cocok untuk benda yang hanya memiliki satu tujuan, misalnya membuka satu folder.
+  - **POP UP 3X3:** klik pada benda akan menampilkan panel berbentuk kotak 3x3 berisi beberapa item. Setiap item memiliki target sendiri dan dibuka saat diklik.
+  - **POP UP LIST:** klik pada benda akan menampilkan daftar item. Setiap item memiliki target sendiri dan dibuka saat diklik.
+- **Contoh alur lengkap:**
+  1. Tekan **Ctrl+Alt+E** untuk masuk mode edit.
+  2. Klik benda **Rak Buku**.
+  3. Isi **@NAMA** dengan `Rak Buku`.
+  4. Pilih **@JENIS** = **POP UP LIST**.
+  5. Isi **@URL**, lalu tekan **|TAMBAH|** untuk menambah item. Ulangi untuk item berikutnya.
+  6. Tekan **SIMPAN**. Data tersimpan ke `Prototipe2\data\medieval-desk.json`.
+  7. Tekan **Ctrl+Alt+E** untuk keluar mode edit.
+  8. Klik **Rak Buku** pada mode normal. Popup berisi daftar item akan muncul.
+
+### Ctrl+E — Alternatif mode edit
+
+Pintasan ini melakukan hal yang sama seperti **Ctrl+Alt+E**, tetapi hanya aktif saat jendela spike sedang terfokus.
+
+- **Untuk apa:** memberi cara cepat masuk atau keluar mode edit ketika sedang berinteraksi langsung dengan jendela spike, misalnya saat baru selesai mengisi form.
+- **Catatan:** **Ctrl+Alt+E** berlaku global, sedangkan **Ctrl+E** dibatasi pada jendela yang sedang fokus agar tidak mengganggu aplikasi lain.
+
+### Ctrl+Alt+Q — Keluar
+
+Pintasan ini menutup aplikasi sekaligus mengembalikan wallpaper asli.
+
+- **Untuk apa:** keluar dari spike dengan rapi.
+- **Cara pakai:** tekan **Ctrl+Alt+Q**.
+- **Yang terjadi:** lapisan ruangan ditutup, lalu wallpaper asli dari sebelum spike dijalankan dikembalikan. Nilai wallpaper asli disimpan pada `%AppData%\MedievalDesk\original-wallpaper.txt`.
+- **Peringatan:** jangan menutup aplikasi lewat Task Manager atau `taskkill`. Cara tersebut dapat meninggalkan wallpaper ruangan tetap terpasang. Gunakan **Ctrl+Alt+Q**, atau kembalikan wallpaper secara manual bila hal itu sudah terjadi.
+
+### Esc — Menutup berlapis
+
+Tombol **Esc** menutup lapisan paling atas terlebih dahulu, secara berurutan:
+
+1. Jika form konfigurasi sedang terbuka, **Esc** menutup form tersebut.
+2. Jika popup sedang terbuka, **Esc** menutup popup tersebut.
+3. Jika tidak ada form atau popup, **Esc** menyembunyikan lapisan ruangan.
+
+Tekan **Esc** berulang kali untuk mundur satu lapis setiap kali penekanan.
 
 ---
 
-## Zona Interaktif (Hotspot)
+## Alur Pakai Pertama Kali
 
-| Objek | Fungsi |
-|-------|--------|
-| Rak Buku | Hotspot configurable (4 grup: Rak 1–4) |
-| Loker | Hotspot configurable (2 grup: Pintu Kiri/Kanan) |
-| Peti | Hotspot configurable (1 grup: Downloads) |
-| Gulungan | Hotspot configurable (1 grup: Umum) |
-| Burung Gagak | Hotspot configurable (1 grup: Umum) |
-| Bola Kristal | Hotspot configurable (1 grup: Umum) |
-| Perisai | Hotspot configurable (1 grup: Umum) |
-| Kalender | Fixed → buka Outlook Calendar (`outlookcal:`) |
-| Note | Fixed → buka Notepad |
-| Bingkai | Fixed → foto (mode `direct` dipaksa oleh prototipe) |
-
-Catatan: Kalender, Note, dan Bingkai memiliki fungsi tetap (tidak bisa dikustomisasi targetnya di versi saat ini).
+1. Jalankan spike WPF (lihat bagian **Cara Menjalankan**). Lapisan ruangan akan tampil dan wallpaper ruangan dipasang.
+2. Tekan **Ctrl+Alt+E** untuk masuk ke mode edit.
+3. Klik salah satu benda, misalnya **Rak Buku**.
+4. Isi **@NAMA**, pilih **@JENIS**, lalu isi **@URL**. Tekan **|TAMBAH|** untuk menambah item bila jenis yang dipilih adalah popup.
+5. Tekan **SIMPAN**. Ulangi langkah 3-5 untuk benda lain yang ingin diisi.
+6. Tekan **Ctrl+Alt+E** untuk keluar dari mode edit.
+7. Klik benda pada mode normal untuk mencoba membukanya.
+8. Tekan **Ctrl+Alt+D** untuk menyembunyikan atau menampilkan lapisan sesuai kebutuhan.
+9. Tekan **Ctrl+Alt+Q** untuk keluar dan kembalikan wallpaper asli.
 
 ---
 
-## Perubahan Terakhir (Sesi Ini)
+## Contoh Data Hotspot (JSON)
 
-- Tombol **✎** di pojok kanan atas **dihapus**; edit mode hanya via tombol **E** (tooltip: `E: edit · Esc: tutup`).
-- Toast transient untuk **Note/Kalender** menampilkan pesan "Notepad dibuka"/"Kalender dibuka" (1400 ms), sesuai prototipe `showTransientPopup`.
-- **Bingkai (photo)** tetap `displayMode: "direct"` — prototipe memaksa photo ke direct via `LOCKED_DISPLAY_MODE_TYPES=['note','calendar','photo']→forced direct`.
-- **Build sukses**: `cargo check` ok, `npm run build` ok, `npx tauri build` sukses — EXE 32.7 MB, MSI 20.3 MiB, NSIS 18.4 MiB.
+Data setiap benda disimpan pada `Prototipe2\data\medieval-desk.json`. Berikut potongan yang menunjukkan bentuk satu benda yang dapat dikonfigurasi.
 
----
+```json
+{
+  "id": "rak_buku",
+  "label": "Rak Buku",
+  "kind": "configurable",
+  "displayMode": "popup-list",
+  "box": { "x": 100, "y": 200, "w": 180, "h": 220 },
+  "groups": [
+    {
+      "name": "Rak Buku",
+      "items": [
+        { "label": "Dokumen", "target": "C:\\Users\\ASUS\\Documents" },
+        { "label": "Catatan", "target": "https://example.com" }
+      ]
+    }
+  ]
+}
+```
 
-## Keterbatasan
+Keterangan singkat:
 
-- Jendela dapat tertutup oleh jendela lain; gunakan **Ctrl + Alt + D** atau taskbar untuk kembali.
-- Posisi hotspot pada multi-monitor & skala DPI masih perlu diuji lebih lanjut.
-- Path file/folder/shortcut/URL perlu ditangani dengan baik jika target tidak tersedia.
-
----
-
-## Rencana Pengembangan
-
-- Backup/ekspor/impor konfigurasi hotspot.
-- Preset layout desktop & tema visual.
-- Dukungan multi-monitor yang lebih baik.
-- Penyesuaian posisi hotspot berdasarkan resolusi & DPI.
-- Validasi target & penanganan error yang lebih informatif.
-- Pengaturan efek visual & shortcut keyboard.
-- Dokumentasi/tutorial penggunaan di dalam aplikasi.
-
----
-
-## Status Proyek
-
-- **Proyek pribadi** — masih dalam pengembangan.
-- Dikembangkan secara bertahap dengan fokus pada pengalaman desktop yang personal, estetis, dan fungsional melalui perpaduan wallpaper fantasy, zona interaktif, serta launcher yang dapat dikustomisasi.
+- **displayMode:** sesuai pilihan **@JENIS** pada form. `direct` untuk **LANGSUNG**, `popup-grid` untuk **POP UP 3X3**, dan `popup-list` untuk **POP UP LIST**.
+- **box:** posisi dan ukuran benda pada gambar referensi.
+- **groups[].items[]:** daftar item beserta target yang dibuka saat item diklik.
 
 ---
 
-## Inspirasi & Proses Pengembangan
+## Yang Perlu Diketahui
 
-- **BentoDesk** — https://github.com/ZRainbow1275/bentodesk
-- **DeskRealm** — https://github.com/ekimaku/DeskRealm
+- Lapisan ruangan memakai jendela transparan yang selalu berada di atas (topmost). Pendekatan menempel ke lapisan desktop (WorkerW) tidak dipakai karena tidak stabil dan dapat rusak setelah pembaruan Windows.
+- Karena bersifat topmost, lapisan dapat menutupi ikon desktop. Gunakan **Ctrl+Alt+D** untuk menyembunyikan sementara.
+- Selalu keluar dengan **Ctrl+Alt+Q** agar wallpaper asli dikembalikan.
+- Belum diuji di beberapa monitor dan skala DPI yang berbeda.
 
-Kedua proyek tersebut menjadi referensi konseptual. Tidak ada kode dari proyek tersebut yang disalin.
+## Referensi
 
-Dikembangkan secara mandiri, dengan proses penulisan kode yang dibantu agen AI melalui **OpenCode** menggunakan pendekatan vibe coding. Konsep, tata letak, tema visual, dan keputusan fitur ditentukan selama proses pengembangan, sementara agen AI membantu implementasi kode.
+- [Rainmeter](https://www.rainmeter.net/) untuk widget di lapisan desktop.
+- Wallpaper Engine (berbayar) untuk wallpaper interaktif.
+- [BentoDesk](https://github.com/ZRainbow1275/bentodesk) dan [DeskRealm](https://github.com/ekimaku/DeskRealm) sebagai inspirasi konsep. Tidak ada kode yang disalin.
 
----
+## Pengembangan
 
-Dikembangkan sebagai proyek personal untuk menghadirkan pengalaman desktop Windows yang lebih unik melalui perpaduan estetika medieval RPG dan fungsionalitas sehari-hari.
+Proyek ini dikembangkan sendiri dengan bantuan agen AI melalui [OpenCode](https://opencode.ai), dengan pendekatan vibe coding. Konsep, tata letak, dan keputusan fitur ditentukan oleh pengembang.
