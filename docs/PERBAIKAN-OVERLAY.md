@@ -1,41 +1,42 @@
 # PERBAIKAN-OVERLAY
-Waktu: 2026-10-17 18.13.46
-PID: 16280
+Waktu: 2026-10-17 19.14.40
+PID: 13452
 
 ## 1. Penyebab
 Dari log (dump sebelum ukuran eksplisit vs sesudah):
-- [sebelum-ukuran] hwnd=0x1404E2 class=HwndWrapper[MedievalDesk.Spike;;62392ec5-3bc3-4561-ac6c-3b1dd3ea4f73] title='Medieval Desk Spike' visible=True rect=152,152,1592,879
-- [sebelum-ukuran] hwnd=0x3501FA class=HwndWrapper[MedievalDesk.Spike;;49975144-bc98-43e5-b5c5-2be56267f20d] title='Hidden Window' visible=False rect=114,114,1554,841
-- [sebelum-ukuran] hwnd=0x140838 class=HwndWrapper[MedievalDesk.Spike;;fdd738c9-c254-4843-90cf-279a386097da] title='MediaContextNotificationWindow' visible=False rect=0,0,0,0
-- [sebelum-ukuran] hwnd=0x380796 class=HwndWrapper[MedievalDesk.Spike;;35d3b61b-6a3b-4ef5-b19f-c178fb9fd75b] title='' visible=False rect=0,0,198,56
-- [sebelum-ukuran] hwnd=0x4085E class=HwndWrapper[MedievalDesk.Spike;;d017b092-c4fe-4b06-985a-4a14d725d928] title='SystemResourceNotifyWindow' visible=False rect=0,0,0,0
-- [sebelum-ukuran] hwnd=0x22092C class=HwndWrapper[MedievalDesk.Spike;;add69746-cb21-4bac-a0ca-cb6f6138e965] title='' visible=False rect=0,0,198,56
-- [sebelum-ukuran] hwnd=0x2509E8 class=CiceroUIWndFrame title='CiceroUIWndFrame' visible=False rect=200,200,400,400
-- [sebelum-ukuran] hwnd=0x1E0920 class=MSCTFIME UI title='MSCTFIME UI' visible=False rect=0,0,0,0
-- [sebelum-ukuran] hwnd=0xE07EE class=IME title='Default IME' visible=False rect=0,0,0,0
-- [sebelum-ukuran] hwnd=0xD098E class=CiceroUIWndFrame title='CiceroUIWndFrame' visible=False rect=0,0,0,0
+- [sebelum-ukuran] hwnd=0x70870 class=HwndWrapper[MedievalDesk.Spike;;4028fc67-8865-4147-8137-c1b615699cb0] title='Medieval Desk Spike' visible=True rect=152,152,1592,879
+- [sebelum-ukuran] hwnd=0x7085E class=HwndWrapper[MedievalDesk.Spike;;5e630f73-cf87-46b5-a5d1-58c31ff3af66] title='Hidden Window' visible=False rect=114,114,1554,841
+- [sebelum-ukuran] hwnd=0x2408BA class=HwndWrapper[MedievalDesk.Spike;;0ae9d872-d278-4c3c-9c06-1c7bd11c55d9] title='MediaContextNotificationWindow' visible=False rect=0,0,0,0
+- [sebelum-ukuran] hwnd=0x1107EE class=HwndWrapper[MedievalDesk.Spike;;be9528bf-57bf-4c94-a7f2-0ee21e120f81] title='' visible=False rect=0,0,198,56
+- [sebelum-ukuran] hwnd=0x170838 class=HwndWrapper[MedievalDesk.Spike;;2256b352-fdcc-4a22-bff9-256b12abf911] title='SystemResourceNotifyWindow' visible=False rect=0,0,0,0
+- [sebelum-ukuran] hwnd=0x3C0796 class=HwndWrapper[MedievalDesk.Spike;;348935c0-e361-4af5-9221-d4ba57496345] title='' visible=False rect=0,0,198,56
+- [sebelum-ukuran] hwnd=0x370A02 class=CiceroUIWndFrame title='CiceroUIWndFrame' visible=False rect=200,200,400,400
+- [sebelum-ukuran] hwnd=0x10098E class=MSCTFIME UI title='MSCTFIME UI' visible=False rect=0,0,0,0
+- [sebelum-ukuran] hwnd=0xA0824 class=IME title='Default IME' visible=False rect=0,0,0,0
+- [sebelum-ukuran] hwnd=0x2809E8 class=CiceroUIWndFrame title='CiceroUIWndFrame' visible=False rect=0,0,0,0
 - [sebelum-ukuran] WPF Actual=960x484,7 Width=960 Height=484,7 Left=101,3 Top=101,3 State=Normal IsVisible=True AllowsTransparency=True Background=#00FFFFFF SizeToContent=Manual
-- [setelah-ukuran] hwnd=0x1404E2 class=HwndWrapper[MedievalDesk.Spike;;62392ec5-3bc3-4561-ac6c-3b1dd3ea4f73] title='Medieval Desk Spike' visible=True rect=0,0,1920,1080
-- [setelah-ukuran] hwnd=0x3501FA class=HwndWrapper[MedievalDesk.Spike;;49975144-bc98-43e5-b5c5-2be56267f20d] title='Hidden Window' visible=False rect=114,114,1554,841
-- [setelah-ukuran] hwnd=0x140838 class=HwndWrapper[MedievalDesk.Spike;;fdd738c9-c254-4843-90cf-279a386097da] title='MediaContextNotificationWindow' visible=False rect=0,0,0,0
-- [setelah-ukuran] hwnd=0x380796 class=HwndWrapper[MedievalDesk.Spike;;35d3b61b-6a3b-4ef5-b19f-c178fb9fd75b] title='' visible=False rect=0,0,198,56
-- [setelah-ukuran] hwnd=0x4085E class=HwndWrapper[MedievalDesk.Spike;;d017b092-c4fe-4b06-985a-4a14d725d928] title='SystemResourceNotifyWindow' visible=False rect=0,0,0,0
-- [setelah-ukuran] hwnd=0x22092C class=HwndWrapper[MedievalDesk.Spike;;add69746-cb21-4bac-a0ca-cb6f6138e965] title='' visible=False rect=0,0,198,56
-- [setelah-ukuran] hwnd=0x2509E8 class=CiceroUIWndFrame title='CiceroUIWndFrame' visible=False rect=200,200,400,400
-- [setelah-ukuran] hwnd=0x1E0920 class=MSCTFIME UI title='MSCTFIME UI' visible=False rect=0,0,0,0
-- [setelah-ukuran] hwnd=0xE07EE class=IME title='Default IME' visible=False rect=0,0,0,0
-- [setelah-ukuran] hwnd=0xD098E class=CiceroUIWndFrame title='CiceroUIWndFrame' visible=False rect=0,0,0,0
+- [setelah-ukuran] hwnd=0x70870 class=HwndWrapper[MedievalDesk.Spike;;4028fc67-8865-4147-8137-c1b615699cb0] title='Medieval Desk Spike' visible=True rect=0,0,1920,1080
+- [setelah-ukuran] hwnd=0x7085E class=HwndWrapper[MedievalDesk.Spike;;5e630f73-cf87-46b5-a5d1-58c31ff3af66] title='Hidden Window' visible=False rect=114,114,1554,841
+- [setelah-ukuran] hwnd=0x2408BA class=HwndWrapper[MedievalDesk.Spike;;0ae9d872-d278-4c3c-9c06-1c7bd11c55d9] title='MediaContextNotificationWindow' visible=False rect=0,0,0,0
+- [setelah-ukuran] hwnd=0x1107EE class=HwndWrapper[MedievalDesk.Spike;;be9528bf-57bf-4c94-a7f2-0ee21e120f81] title='' visible=False rect=0,0,198,56
+- [setelah-ukuran] hwnd=0x170838 class=HwndWrapper[MedievalDesk.Spike;;2256b352-fdcc-4a22-bff9-256b12abf911] title='SystemResourceNotifyWindow' visible=False rect=0,0,0,0
+- [setelah-ukuran] hwnd=0x3C0796 class=HwndWrapper[MedievalDesk.Spike;;348935c0-e361-4af5-9221-d4ba57496345] title='' visible=False rect=0,0,198,56
+- [setelah-ukuran] hwnd=0x370A02 class=CiceroUIWndFrame title='CiceroUIWndFrame' visible=False rect=200,200,400,400
+- [setelah-ukuran] hwnd=0x10098E class=MSCTFIME UI title='MSCTFIME UI' visible=False rect=0,0,0,0
+- [setelah-ukuran] hwnd=0xA0824 class=IME title='Default IME' visible=False rect=0,0,0,0
+- [setelah-ukuran] hwnd=0x2809E8 class=CiceroUIWndFrame title='CiceroUIWndFrame' visible=False rect=0,0,0,0
 - [setelah-ukuran] WPF Actual=1280x720 Width=1280 Height=720 Left=0 Top=0 State=Normal IsVisible=True AllowsTransparency=True Background=#00FFFFFF SizeToContent=Manual
-- [3detik] hwnd=0x1404E2 class=HwndWrapper[MedievalDesk.Spike;;62392ec5-3bc3-4561-ac6c-3b1dd3ea4f73] title='Medieval Desk Spike' visible=True rect=0,0,1920,1080
-- [3detik] hwnd=0x3501FA class=HwndWrapper[MedievalDesk.Spike;;49975144-bc98-43e5-b5c5-2be56267f20d] title='Hidden Window' visible=False rect=114,114,1554,841
-- [3detik] hwnd=0x140838 class=HwndWrapper[MedievalDesk.Spike;;fdd738c9-c254-4843-90cf-279a386097da] title='MediaContextNotificationWindow' visible=False rect=0,0,0,0
-- [3detik] hwnd=0x380796 class=HwndWrapper[MedievalDesk.Spike;;35d3b61b-6a3b-4ef5-b19f-c178fb9fd75b] title='' visible=False rect=0,0,198,56
-- [3detik] hwnd=0x4085E class=HwndWrapper[MedievalDesk.Spike;;d017b092-c4fe-4b06-985a-4a14d725d928] title='SystemResourceNotifyWindow' visible=False rect=0,0,0,0
-- [3detik] hwnd=0x22092C class=HwndWrapper[MedievalDesk.Spike;;add69746-cb21-4bac-a0ca-cb6f6138e965] title='' visible=False rect=0,0,198,56
-- [3detik] hwnd=0x1E0920 class=MSCTFIME UI title='MSCTFIME UI' visible=False rect=0,0,0,0
-- [3detik] hwnd=0xE07EE class=IME title='Default IME' visible=False rect=0,0,0,0
-- [3detik] hwnd=0x2509E8 class=CiceroUIWndFrame title='CiceroUIWndFrame' visible=False rect=200,200,400,400
-- [3detik] hwnd=0xD098E class=CiceroUIWndFrame title='CiceroUIWndFrame' visible=False rect=0,0,0,0
+- [3detik] hwnd=0x230382 class=HwndWrapper[MedievalDesk.Spike;;7fd1e833-08d0-4789-84fe-1822de71bbb9] title='' visible=True rect=233,872,327,911
+- [3detik] hwnd=0x70870 class=HwndWrapper[MedievalDesk.Spike;;4028fc67-8865-4147-8137-c1b615699cb0] title='Medieval Desk Spike' visible=True rect=0,0,1920,1080
+- [3detik] hwnd=0x7085E class=HwndWrapper[MedievalDesk.Spike;;5e630f73-cf87-46b5-a5d1-58c31ff3af66] title='Hidden Window' visible=False rect=114,114,1554,841
+- [3detik] hwnd=0x2408BA class=HwndWrapper[MedievalDesk.Spike;;0ae9d872-d278-4c3c-9c06-1c7bd11c55d9] title='MediaContextNotificationWindow' visible=False rect=0,0,0,0
+- [3detik] hwnd=0x1107EE class=HwndWrapper[MedievalDesk.Spike;;be9528bf-57bf-4c94-a7f2-0ee21e120f81] title='' visible=False rect=0,0,198,56
+- [3detik] hwnd=0x170838 class=HwndWrapper[MedievalDesk.Spike;;2256b352-fdcc-4a22-bff9-256b12abf911] title='SystemResourceNotifyWindow' visible=False rect=0,0,0,0
+- [3detik] hwnd=0x3C0796 class=HwndWrapper[MedievalDesk.Spike;;348935c0-e361-4af5-9221-d4ba57496345] title='' visible=False rect=0,0,198,56
+- [3detik] hwnd=0x10098E class=MSCTFIME UI title='MSCTFIME UI' visible=False rect=0,0,0,0
+- [3detik] hwnd=0xA0824 class=IME title='Default IME' visible=False rect=0,0,0,0
+- [3detik] hwnd=0x370A02 class=CiceroUIWndFrame title='CiceroUIWndFrame' visible=False rect=200,200,400,400
+- [3detik] hwnd=0x2809E8 class=CiceroUIWndFrame title='CiceroUIWndFrame' visible=False rect=0,0,0,0
 - [3detik] WPF Actual=1280x720 Width=1280 Height=720 Left=0 Top=0 State=Normal IsVisible=True AllowsTransparency=True Background=#00FFFFFF SizeToContent=Manual
 
 ## 2. Perubahan
@@ -46,7 +47,7 @@ Dari log (dump sebelum ukuran eksplisit vs sesudah):
 ## 3. Hasil tes
 - T1: LULUS (IsVisible=True rect=0,0,1920,1080 target=0,0,1920,1080)
 - T2: LULUS (WindowFromPoint 4 titik)
-- T3: LULUS (popupVisible=True title='Rak Buku' label='Rak Buku')
+- T3: LULUS (popupVisible=True title='Gulungan' label='Gulungan')
 - T4: LULUS (popup setelah Esc null=True)
 - T5: LULUS (HideVisible=False ShowVisible=True)
 

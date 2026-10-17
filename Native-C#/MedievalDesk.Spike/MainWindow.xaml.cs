@@ -7,6 +7,7 @@ using System.Text.Json;
 using System.Text.Json.Nodes;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Input;
 using System.Windows.Interop;
@@ -45,6 +46,9 @@ public partial class MainWindow : Window
     private ComboBox? _cmbJenis;
     private Button? _btnTambahItem;
     private StackPanel? _itemsPanel;
+    private StackPanel? _urlBlock;
+    private StackPanel? _tambahRow;
+    private ScrollViewer? _scrollItems;
     private readonly List<EditItem> _editItems = new();
 
     private readonly List<string> _dump = new();
@@ -434,7 +438,7 @@ public partial class MainWindow : Window
             Canvas.SetTop(border, top);
             _canvas.Children.Add(border);
 
-            if (_firstHotspot == null)
+            if (_firstHotspot == null && EffectiveMode(hs) != "direct")
             {
                 _firstHotspot = hs;
                 _firstBorder = border;
@@ -461,6 +465,8 @@ public partial class MainWindow : Window
         double W = ActualWidth > 1 ? ActualWidth : _targetW;
         double H = ActualHeight > 1 ? ActualHeight : _targetH;
         var titleBrush = new SolidColorBrush(Color.FromRgb(0x3A, 0x2F, 0x1F));
+        bool grid = EffectiveMode(hs) == "popup-grid";
+
         var stack = new StackPanel();
         stack.Children.Add(new TextBlock
         {
@@ -473,7 +479,26 @@ public partial class MainWindow : Window
 
         if (hs.Groups == null || hs.Groups.Count == 0)
         {
-            stack.Children.Add(new TextBlock { Text = "(tidak ada grup)", Foreground = titleBrush, Margin = new Thickness(0, 6, 0, 0) });
+            stack.Children.Add(new TextBlock { Text = "(tidak ada item)", Foreground = titleBrush, Margin = new Thickness(0, 6, 0, 0) });
+        }
+        else if (grid)
+        {
+            var ug = new UniformGrid { Columns = 3, Margin = new Thickness(0, 10, 0, 0) };
+            foreach (var g in hs.Groups)
+                foreach (var it in g.Items)
+                {
+                    var target = it.Target;
+                    var btn = new Button
+                    {
+                        Content = string.IsNullOrWhiteSpace(it.Label) ? "(tanpa label)" : it.Label,
+                        Margin = new Thickness(3),
+                        Padding = new Thickness(6, 12, 6, 12),
+                        Cursor = Cursors.Hand
+                    };
+                    btn.Click += (_, _) => OpenTarget(target);
+                    ug.Children.Add(btn);
+                }
+            stack.Children.Add(ug);
         }
         else
         {
@@ -503,9 +528,10 @@ public partial class MainWindow : Window
             }
         }
 
+        double width = grid ? 360 : 320;
         var border = new Border
         {
-            Width = 320,
+            Width = width,
             Background = new SolidColorBrush(Color.FromRgb(0xFD, 0xF5, 0xE6)),
             BorderBrush = new SolidColorBrush(Color.FromRgb(0xC9, 0xB2, 0x8A)),
             BorderThickness = new Thickness(2),
@@ -513,12 +539,12 @@ public partial class MainWindow : Window
             Padding = new Thickness(16),
             Child = stack
         };
-        Canvas.SetLeft(border, (W - 320) / 2);
+        Canvas.SetLeft(border, (W - width) / 2);
         Canvas.SetTop(border, (H - 260) / 2);
         _popup = border;
         _popupLabel = hs.Label;
         _canvas.Children.Add(border);
-        App.Log($"POPUP: {hs.Label}");
+        App.Log($"POPUP ({(grid ? "grid" : "list")}): {hs.Label}");
     }
 
     private static string EffectiveMode(Hotspot hs) =>
@@ -562,34 +588,37 @@ public partial class MainWindow : Window
         _cmbJenis = null;
         _btnTambahItem = null;
         _itemsPanel = null;
+        _urlBlock = null;
+        _tambahRow = null;
+        _scrollItems = null;
         _editItems.Clear();
     }
 
     private void RefreshItemsList()
     {
+        string jenis = _cmbJenis?.SelectedItem as string ?? "LANGSUNG";
+        bool isPopup = jenis == "POP UP 3X3" || jenis == "POP UP LIST";
+
+        if (_urlBlock != null) _urlBlock.Visibility = isPopup ? Visibility.Collapsed : Visibility.Visible;
+        if (_tambahRow != null) _tambahRow.Visibility = isPopup ? Visibility.Visible : Visibility.Collapsed;
+        if (_scrollItems != null) _scrollItems.Visibility = isPopup ? Visibility.Visible : Visibility.Collapsed;
+
         if (_itemsPanel == null) return;
         _itemsPanel.Children.Clear();
 
         foreach (var item in _editItems)
         {
             var row = new StackPanel { Orientation = Orientation.Horizontal, Margin = new Thickness(0, 2, 0, 2) };
-            var tbLabel = new TextBox { Width = 110, Padding = new Thickness(4), Text = item.Label };
+            var tbLabel = new TextBox { Width = 100, Padding = new Thickness(4), Text = item.Label };
             tbLabel.TextChanged += (_, _) => item.Label = tbLabel.Text;
-            var tbTarget = new TextBox { Width = 190, Margin = new Thickness(4, 0, 0, 0), Padding = new Thickness(4), Text = item.Target };
+            var tbTarget = new TextBox { Width = 170, Margin = new Thickness(4, 0, 0, 0), Padding = new Thickness(4), Text = item.Target };
             tbTarget.TextChanged += (_, _) => item.Target = tbTarget.Text;
-            var btnDel = new Button { Content = "Hapus", Margin = new Thickness(4, 0, 0, 0), Padding = new Thickness(6, 2, 6, 2), Cursor = Cursors.Hand };
+            var btnDel = new Button { Content = "X", Width = 26, Margin = new Thickness(4, 0, 0, 0), Padding = new Thickness(0), Cursor = Cursors.Hand };
             btnDel.Click += (_, _) => { _editItems.Remove(item); RefreshItemsList(); };
             row.Children.Add(tbLabel);
             row.Children.Add(tbTarget);
             row.Children.Add(btnDel);
             _itemsPanel.Children.Add(row);
-        }
-
-        if (_btnTambahItem != null)
-        {
-            string j = _cmbJenis?.SelectedItem?.ToString() ?? "LANGSUNG";
-            bool show = j == "POP UP 3X3" || j == "POP UP LIST";
-            _btnTambahItem.Visibility = show ? Visibility.Visible : Visibility.Collapsed;
         }
     }
 
@@ -632,26 +661,28 @@ public partial class MainWindow : Window
         _cmbJenis.SelectionChanged += (_, _) => RefreshItemsList();
         stack.Children.Add(_cmbJenis);
 
-        stack.Children.Add(new TextBlock { Text = "@URL", FontWeight = FontWeights.SemiBold, Foreground = ink, Margin = new Thickness(0, 0, 0, 2) });
+        _urlBlock = new StackPanel();
+        _urlBlock.Children.Add(new TextBlock { Text = "@URL", FontWeight = FontWeights.SemiBold, Foreground = ink, Margin = new Thickness(0, 0, 0, 2) });
         var txtUrl = new TextBox { Text = defaultUrl, Padding = new Thickness(6, 4, 6, 4), Margin = new Thickness(0, 0, 0, 8) };
-        stack.Children.Add(txtUrl);
+        _urlBlock.Children.Add(txtUrl);
+        stack.Children.Add(_urlBlock);
 
-        var rowTambah = new StackPanel { Orientation = Orientation.Horizontal, Margin = new Thickness(0, 0, 0, 8) };
-        _btnTambahItem = new Button { Content = "| TAMBAH |", Padding = new Thickness(10, 4, 10, 4), Cursor = Cursors.Hand };
+        _tambahRow = new StackPanel();
+        _tambahRow.Children.Add(new TextBlock { Text = "@URL ITEM (isi URL tiap baris)", FontWeight = FontWeights.SemiBold, Foreground = ink, Margin = new Thickness(0, 0, 0, 2) });
+        _btnTambahItem = new Button { Content = "| TAMBAH |", Padding = new Thickness(10, 4, 10, 4), Cursor = Cursors.Hand, HorizontalAlignment = HorizontalAlignment.Left, Margin = new Thickness(0, 0, 0, 8) };
         _btnTambahItem.Click += (_, _) => { _editItems.Add(new EditItem()); RefreshItemsList(); };
-        rowTambah.Children.Add(_btnTambahItem);
-        rowTambah.Children.Add(new TextBlock { Text = "  Muncul hanya untuk POP UP 3X3 / POP UP LIST", VerticalAlignment = VerticalAlignment.Center, Foreground = Brushes.DimGray, FontSize = 11 });
-        stack.Children.Add(rowTambah);
+        _tambahRow.Children.Add(_btnTambahItem);
+        stack.Children.Add(_tambahRow);
 
         _itemsPanel = new StackPanel();
-        var scroll = new ScrollViewer
+        _scrollItems = new ScrollViewer
         {
             MaxHeight = 220,
             VerticalScrollBarVisibility = ScrollBarVisibility.Auto,
             HorizontalScrollBarVisibility = ScrollBarVisibility.Disabled,
             Content = _itemsPanel
         };
-        stack.Children.Add(scroll);
+        stack.Children.Add(_scrollItems);
 
         var rowBtn = new StackPanel { Orientation = Orientation.Horizontal, HorizontalAlignment = HorizontalAlignment.Right, Margin = new Thickness(0, 8, 0, 0) };
         var btnBatal = new Button { Content = "BATAL", Padding = new Thickness(12, 4, 12, 4), Margin = new Thickness(0, 0, 8, 0), Cursor = Cursors.Hand };

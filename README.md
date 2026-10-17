@@ -154,20 +154,20 @@ Mode edit digunakan untuk mengisi atau mengubah isi setiap benda di ruangan.
 - **Isi form konfigurasi:**
   - **@NAMA:** nama benda yang akan ditampilkan pada popup.
   - **@JENIS:** cara benda merespons klik. Pilihannya **LANGSUNG**, **POP UP 3X3**, atau **POP UP LIST**.
-  - **@URL:** target atau lokasi yang dibuka (URL, file, folder, atau aplikasi).
-  - **|TAMBAH|:** tombol untuk menambah item ke dalam daftar benda. Tombol ini hanya muncul ketika **@JENIS** bernilai **POP UP 3X3** atau **POP UP LIST**, dan disembunyikan ketika **@JENIS** bernilai **LANGSUNG**.
+  - **@URL:** target tunggal yang dibuka. Hanya muncul saat **@JENIS** = **LANGSUNG**; disembunyikan untuk pilihan popup.
+  - **@URL ITEM (isi URL tiap baris):** muncul hanya saat **@JENIS** bernilai **POP UP 3X3** atau **POP UP LIST**. Berisi tombol **|TAMBAH|** dan daftar baris item; setiap baris punya kolom nama item dan URL, plus tombol **X** untuk menghapus.
   - **SIMPAN:** menyimpan perubahan ke JSON, lalu menutup form.
   - **BATAL:** menutup form tanpa menyimpan.
 - **Efek tiap pilihan JENIS:**
-  - **LANGSUNG:** klik pada benda akan langsung membuka target tanpa menampilkan popup. Cocok untuk benda yang hanya memiliki satu tujuan, misalnya membuka satu folder.
-  - **POP UP 3X3:** klik pada benda akan menampilkan panel berbentuk kotak 3x3 berisi beberapa item. Setiap item memiliki target sendiri dan dibuka saat diklik.
-  - **POP UP LIST:** klik pada benda akan menampilkan daftar item. Setiap item memiliki target sendiri dan dibuka saat diklik.
+  - **LANGSUNG:** klik pada benda langsung membuka target (kolom **@URL**) tanpa popup. Cocok untuk benda dengan satu tujuan.
+  - **POP UP 3X3:** klik pada benda menampilkan panel kisi 3 kolom berisi tombol item (nama grup tidak ditampilkan). Isi item lewat baris **@URL ITEM**.
+  - **POP UP LIST:** klik pada benda menampilkan daftar item bertingkat per grup. Isi item lewat baris **@URL ITEM**.
 - **Contoh alur lengkap:**
   1. Tekan **Ctrl+Alt+E** untuk masuk mode edit.
   2. Klik benda **Rak Buku**.
   3. Isi **@NAMA** dengan `Rak Buku`.
-  4. Pilih **@JENIS** = **POP UP LIST**.
-  5. Isi **@URL**, lalu tekan **|TAMBAH|** untuk menambah item. Ulangi untuk item berikutnya.
+  4. Pilih **@JENIS** = **POP UP LIST** (kolom **@URL** otomatis tersembunyi).
+  5. Isi nama item dan URL pada tiap baris, tekan **|TAMBAH|** untuk menambah item. Ulangi untuk item berikutnya.
   6. Tekan **SIMPAN**. Data tersimpan ke `Prototipe2\data\medieval-desk.json`.
   7. Tekan **Ctrl+Alt+E** untuk keluar mode edit.
   8. Klik **Rak Buku** pada mode normal. Popup berisi daftar item akan muncul.
