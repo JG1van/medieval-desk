@@ -487,16 +487,10 @@ public partial class MainWindow : Window
             foreach (var g in hs.Groups)
                 foreach (var it in g.Items)
                 {
-                    var target = it.Target;
-                    var btn = new Button
-                    {
-                        Content = string.IsNullOrWhiteSpace(it.Label) ? "(tanpa label)" : it.Label,
-                        Margin = new Thickness(3),
-                        Padding = new Thickness(6, 12, 6, 12),
-                        Cursor = Cursors.Hand
-                    };
-                    btn.Click += (_, _) => OpenTarget(target);
-                    ug.Children.Add(btn);
+                    var enter = PopupButton(it.Label, it.Target);
+                    enter.Margin = new Thickness(3);
+                    enter.Padding = new Thickness(8, 12, 8, 12);
+                    ug.Children.Add(enter);
                 }
             stack.Children.Add(ug);
         }
@@ -512,23 +506,11 @@ public partial class MainWindow : Window
                     Margin = new Thickness(0, 10, 0, 2)
                 });
                 foreach (var it in g.Items)
-                {
-                    var target = it.Target;
-                    var btn = new Button
-                    {
-                        Content = string.IsNullOrWhiteSpace(it.Label) ? "(tanpa label)" : it.Label,
-                        Margin = new Thickness(0, 2, 0, 2),
-                        Padding = new Thickness(8, 2, 8, 2),
-                        HorizontalAlignment = HorizontalAlignment.Left,
-                        Cursor = Cursors.Hand
-                    };
-                    btn.Click += (_, _) => OpenTarget(target);
-                    stack.Children.Add(btn);
-                }
+                    stack.Children.Add(PopupButton(it.Label, it.Target));
             }
         }
 
-        double width = grid ? 360 : 320;
+        double width = 360;
         var border = new Border
         {
             Width = width,
@@ -545,6 +527,17 @@ public partial class MainWindow : Window
         _popupLabel = hs.Label;
         _canvas.Children.Add(border);
         App.Log($"POPUP ({(grid ? "grid" : "list")}): {hs.Label}");
+    }
+
+    private Button PopupButton(string label, string target)
+    {
+        var btn = new Button
+        {
+            Content = string.IsNullOrWhiteSpace(label) ? "(tanpa label)" : label,
+            Style = (Style)FindResource("PopupItem")
+        };
+        btn.Click += (_, _) => OpenTarget(target);
+        return btn;
     }
 
     private static string EffectiveMode(Hotspot hs) =>

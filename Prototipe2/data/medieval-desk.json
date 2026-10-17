@@ -78,39 +78,39 @@
           "name": "Gulungan",
           "items": [
             {
-              "label": "9Router(kelola endpoint ai).lnk",
+              "label": "9Router(kelola endpoint ai)",
               "target": "D:\\@\\TOOL\\9Router(kelola endpoint ai).lnk"
             },
             {
-              "label": "Adobe(kelola warna desain).lnk",
+              "label": "Adobe(kelola warna desain)",
               "target": "D:\\@\\TOOL\\Adobe(kelola warna desain).lnk"
             },
             {
-              "label": "cpanel(kelola hosting panel).lnk",
+              "label": "cpanel(kelola hosting panel)",
               "target": "D:\\@\\TOOL\\cpanel(kelola hosting panel).lnk"
             },
             {
-              "label": "delphitools(tools privasi lokal).lnk",
+              "label": "delphitools(tools privasi lokal)",
               "target": "D:\\@\\TOOL\\delphitools(tools privasi lokal).lnk"
             },
             {
-              "label": "Doop(canvas desain ai).lnk",
+              "label": "Doop(canvas desain ai)",
               "target": "D:\\@\\TOOL\\Doop(canvas desain ai).lnk"
             },
             {
-              "label": "Excalidraw(whiteboard sketsa tangan).lnk",
+              "label": "Excalidraw(whiteboard sketsa tangan)",
               "target": "D:\\@\\TOOL\\Excalidraw(whiteboard sketsa tangan).lnk"
             },
             {
-              "label": "OpenClaw(panel kontrol ai).lnk",
+              "label": "OpenClaw(panel kontrol ai)",
               "target": "D:\\@\\TOOL\\OpenClaw(panel kontrol ai)15f50ae7ef826ecd51738067197a13d3a7a0ea275c3450d6.lnk"
             },
             {
-              "label": "VibeUI(kumpulan prompt ui).lnk",
+              "label": "VibeUI(kumpulan prompt ui)",
               "target": "D:\\@\\TOOL\\VibeUI(kumpulan prompt ui).lnk"
             },
             {
-              "label": "E2B(sandbox ai cloud).lnk",
+              "label": "E2B(sandbox ai cloud)",
               "target": "D:\\@\\TOOL\\E2B(sandbox ai cloud).lnk"
             }
           ]
@@ -206,39 +206,39 @@
           "name": "Lemari",
           "items": [
             {
-              "label": "Docker Desktop.lnk",
+              "label": "Docker Desktop",
               "target": "D:\\@\\ALL\\Docker Desktop.lnk"
             },
             {
-              "label": "VideoPsalm.exe",
+              "label": "VideoPsalm",
               "target": "D:\\@\\ALL\\VP PORTABLE 2021\\VideoPsalm 1.26 Portable [2020]\\VideoPsalm.exe"
             },
             {
-              "label": "SQLyog.exe.lnk",
+              "label": "SQLyog",
               "target": "D:\\@\\TOOL\\SQLyog.exe.lnk"
             },
             {
-              "label": "Visual Studio Code.lnk",
+              "label": "VS Code",
               "target": "D:\\@\\TOOL\\Visual Studio Code.lnk"
             },
             {
-              "label": "GitHub Desktop.lnk",
+              "label": "GitHub",
               "target": "D:\\@\\TOOL\\GitHub Desktop.lnk"
             },
             {
-              "label": "Word.lnk",
+              "label": "Word",
               "target": "C:\\ProgramData\\Microsoft\\Windows\\Start Menu\\Programs\\Word.lnk"
             },
             {
-              "label": "PowerPoint.lnk",
+              "label": "PowerPoint",
               "target": "C:\\ProgramData\\Microsoft\\Windows\\Start Menu\\Programs\\PowerPoint.lnk"
             },
             {
-              "label": "Excel.lnk",
+              "label": "Excel",
               "target": "C:\\ProgramData\\Microsoft\\Windows\\Start Menu\\Programs\\Excel.lnk"
             },
             {
-              "label": "Laragon.lnk",
+              "label": "Laragon",
               "target": "C:\\ProgramData\\Microsoft\\Windows\\Start Menu\\Programs\\Laragon\\Laragon.lnk"
             }
           ]
