@@ -1,0 +1,40 @@
+# Build output
+bin/
+obj/
+target/
+dist/
+out/
+publish/
+installers/
+
+# Dependencies
+node_modules/
+
+# IDE
+.vs/
+.vscode/
+.idea/
+*.user
+*.suo
+*.userprefs
+
+# Logs & temporary
+*.log
+spike-log*.txt
+verify.png
+self-test.txt
+
+# Backup files
+*.bak
+*.bak-before-fix
+
+# Binary release artifacts (dibuild otomatis lewat GitHub Actions)
+*.exe
+*.msi
+*.zip
+
+# Data lokal
+config.json
+*.local.json
+.config.json
+**/config.local.json

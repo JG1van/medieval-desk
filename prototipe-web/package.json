@@ -1,0 +1,13 @@
+﻿{
+  "name": "prototipe-web",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "npm --prefix ./client run dev",
+    "build": "npm --prefix ./client run build"
+  },
+  "devDependencies": {
+    "@tauri-apps/cli": "^2"
+  }
+}
